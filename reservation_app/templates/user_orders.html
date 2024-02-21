@@ -13,9 +13,9 @@
      {% for order in user_orders %}
      <li>{{ order.date }} - {{ order.time }}</li>
    
-     
+     {% endfor %}
      {% endif %}
     
      <!-- Display other order information as needed -->
- {% endfor %}
+ 
 {% endblock %}
