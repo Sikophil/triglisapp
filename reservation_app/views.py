@@ -63,10 +63,13 @@ def register_user(request):
 
 # views.py
 
-
 def user_orders(request):
-    user_orders = Book.objects.filter(user=request.user)
-    return render(request, 'user_orders.html', {'user_orders': user_orders})
+    if request.user.is_authenticated:
+        user_orders = Book.objects.filter(user=request.user)
+        return render(request, 'user_orders.html', {'user_orders': user_orders})
+    else:
+        # Handle the case when the user is not authenticated, e.g., redirect to login page
+        return render(request, 'login.html')
 
 
 def create_book(request):
