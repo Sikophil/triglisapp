@@ -25,7 +25,10 @@ SECRET_KEY = "django-insecure-jrgvz!l-+1zt7hh$o6w$7n)^6q0dz)lv69v0mdxw15^keb8gc2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'triglisapp-cf83ff3517ed.herokuapp.com',  # Add your Heroku domain
+    '.herokuapp.com',  # Allow any subdomain of herokuapp.com
+]
 
 
 # Application definition
