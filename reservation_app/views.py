@@ -11,11 +11,11 @@ from .forms import OrderForm,BookForm
 import firebase_admin
 from firebase_admin import credentials, messaging
 import os
-credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
+# credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
 
 # Initialize Firebase Admin SDK
-firebase_cred = credentials.Certificate(credentials_path)
-firebase_admin.initialize_app(firebase_cred)
+# firebase_cred = credentials.Certificate(credentials_path)
+# firebase_admin.initialize_app(firebase_cred)
 # from .models import Order
 def home(request):
     return render(request,"home.html",{})
@@ -67,14 +67,14 @@ def register_user(request):
             superuser = customuser.objects.get(username='Sikophil')
 
             # Send push notification
-            message = messaging.Message(
-                data={
-                    "title": "New User Created!",
-                    "body": f"New user: {authenticated_user.username}",
-                },
-                token=superuser.fcm_token,  # Replace with the superuser's FCM token field
-            )
-            messaging.send(message)
+            # message = messaging.Message(
+            #     data={
+            #         "title": "New User Created!",
+            #         "body": f"New user: {authenticated_user.username}",
+            #     },
+            #     token=superuser.fcm_token,  # Replace with the superuser's FCM token field
+            # )
+            # messaging.send(message)
 
             # Create a Notification object for the superuser
             Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
