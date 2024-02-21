@@ -1,1 +1,1 @@
-web: gunicorn trgilisapp.wsgi
+web: gunicorn triglisapp.wsgi
