@@ -5,10 +5,13 @@
 
 {% block content %}
    
+{% if user.is_authenticated %}
+
 
     <a href="{% url 'create_book' %}">
         <button class="tobook">New Reservation</button>
     </a>
+    {% endif %}
     <style>
         /* Additional styling for the button within the content block */
         .tobook {
