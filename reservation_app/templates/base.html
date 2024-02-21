@@ -1,0 +1,68 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html>
+    
+<head>
+
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <!-- Здесь могут быть ваши общие стили, скрипты и другие мета-теги -->
+    
+    <style>
+    
+        /* Здесь могут быть ваши общие стили для кнопок и других элементов */
+    /* Your existing styles */
+
+    /* Container styles for the bottom-left button */
+    .base_buttons {
+    position: fixed;
+    bottom: 0;
+    width: 25vw;
+    height: 15vh;
+    padding:2vh 2vw;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 4vw;
+    background-color: #000000;
+}
+    .home{ left: 0}
+    .menu{ left: 25vw}
+    .mybook{ left: 50vw}
+    .login_user{ left: 75vw}
+    .logout_user{ left: 75vw}
+    body {
+            /* Linear Gradient */
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            
+            /* Radial Gradient */
+            /* background: radial-gradient(circle, #ff7e5f, #feb47b); */
+            
+            /* You can customize the colors and direction as per your preference */
+            /* Add more color stops if needed */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    
+    <a href="{% url 'home' %}">
+        <button class="base_buttons home">Home</button>
+    </a>
+
+
+     
+
+   
+</body>
+</html>
+<!-- templates/your_app/your_template.html -->
