@@ -8,13 +8,20 @@ from .forms import SignUpForm
 from django import forms
 from .models import Book
 from .forms import OrderForm,BookForm
+from .models import Notification
+import firebase_admin
+from firebase_admin import credentials, messaging
+import os
+# Initialize Firebase Admin SDK
+credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
+
+# Initialize Firebase Admin SDK
+firebase_cred = credentials.Certificate(credentials_path)
+firebase_admin.initialize_app(firebase_cred)
+
 # from .models import Order
 def home(request):
     return render(request,"home.html",{})
- 
-# def book(request,pk):
-#     book = Book.objects.get(id=pk)
-#     return render(request,"book.html",{'book':book})
 
 def menu(request):
     return render(request,"menu.html",{})
@@ -48,14 +55,30 @@ def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+
+            # Authenticate the new user
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+            authenticated_user = authenticate(username=username, password=password)
 
-            user = authenticate(username=username,password=password)
+            # Get the superuser
             superuser = User.objects.get(username='Sikophil')
-            Notification.objects.create(user=superuser, message='NewUser!')
-            messages.success(request,("New User!"))
+
+            # Send push notification
+            message = messaging.Message(
+                data={
+                    "title": "New User Created!",
+                    "body": f"New user: {authenticated_user.username}",
+                },
+                token=superuser.fcm_token,  # Replace with the superuser's FCM token field
+            )
+            messaging.send(message)
+
+            # Create a Notification object for the superuser
+            Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
+
+            messages.success(request, "New User!")
             return redirect('home')
         else:
             for field, errors in form.errors.items():
@@ -110,3 +133,5 @@ def create_notification(request):
     else:
         form = NotificationForm()
     return render(request, 'create_notification.html', {'form': form})
+
+
