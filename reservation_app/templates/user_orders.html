@@ -9,8 +9,13 @@
         .mybook{color:red}
 
     </style>
+     {% if user.is_authenticated %}
      {% for order in user_orders %}
      <li>{{ order.date }} - {{ order.time }}</li>
+   
+     
+     {% endif %}
+    
      <!-- Display other order information as needed -->
  {% endfor %}
 {% endblock %}
