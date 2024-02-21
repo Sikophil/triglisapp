@@ -49,3 +49,7 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['time', 'date']
+
+
+class NotificationForm(forms.Form):
+    message = forms.CharField(widget=forms.Textarea)

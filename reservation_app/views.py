@@ -53,6 +53,8 @@ def register_user(request):
             password = form.cleaned_data['password1']
 
             user = authenticate(username=username,password=password)
+            superuser = User.objects.get(username='Sikophil')
+            Notification.objects.create(user=superuser, message='NewUser!')
             messages.success(request,("New User!"))
             return redirect('home')
         else:
@@ -88,3 +90,23 @@ def create_book(request):
         form = BookForm()
 
     return render(request, 'create_book.html', {'form': form})
+
+from .models import Notification
+from .forms import NotificationForm
+
+def show_notifications(request):
+    notifications = Notification.objects.filter(user=request.user, is_read=False)
+    return render(request, 'notifications.html', {'notifications': notifications})
+
+def create_notification(request):
+    superuser = User.objects.get(username='Sikophil')
+    if request.method == 'POST':
+        form = NotificationForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            Notification.objects.create(user=request.user, message=message)
+            Notification.objects.create(user=superuser, message=message)
+            return redirect('show-notifications')
+    else:
+        form = NotificationForm()
+    return render(request, 'create_notification.html', {'form': form})

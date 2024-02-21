@@ -1,0 +1,18 @@
+<!-- create_notification.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Notification</title>
+</head>
+<body>
+
+<h1>Create Notification</h1>
+
+<form method="post" action="{% url 'create-notification' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Notification</button>
+</form>
+
+</body>
+</html>
