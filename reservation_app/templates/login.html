@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Your Page Title{% endblock %}
+
+{% block content %}
+<style>
+  .register{color:red;bottom: 20vh;}
+
+</style>
+<a href="{% url 'register_user' %}">
+  <button class="base_buttons register">Register</button>
+</a>
+<form method="POST" action="{% url 'login_user'%}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    
+{% if messages %}
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+{% endif %}
+{% endblock %} 

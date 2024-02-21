@@ -58,8 +58,22 @@
     <a href="{% url 'home' %}">
         <button class="base_buttons home">Home</button>
     </a>
-
-
+    <a href="{% url 'menu' %}">
+        <button class="base_buttons menu">Menu</button>
+    </a>
+    <a href="{% url 'user_orders' %}">
+        <button class="base_buttons mybook">Reservations</button>
+    </a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout_user' %}">
+        <button class="base_buttons logout_user">Logout</button>
+    </a>
+    {% else %} 
+    <a href="{% url 'login_user' %}">
+        <button class="base_buttons login_user">Login</button>
+    </a>
+    
+    {% endif %}
      
 
    

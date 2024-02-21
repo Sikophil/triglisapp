@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Your Page Title{% endblock %}
+
+{% block content %}
+
+    <style>
+        .mybook{color:red}
+
+    </style>
+     {% for order in user_orders %}
+     <li>{{ order.date }} - {{ order.time }}</li>
+     <!-- Display other order information as needed -->
+ {% endfor %}
+{% endblock %}

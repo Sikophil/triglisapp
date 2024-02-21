@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'triglisapp-cf83ff3517ed.herokuapp.com',  # Add your Heroku domain
-    '.herokuapp.com',  # Allow any subdomain of herokuapp.com
+    '.herokuapp.com',
+      '127.0.0.1'  # Allow any subdomain of herokuapp.com
 ]
 
 

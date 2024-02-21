@@ -1,0 +1,11 @@
+<!-- create_book.html -->
+{% extends 'base.html' %}  <!-- Extend a base template if you have one -->
+
+{% block content %}
+  <h2>Create a New Reservation</h2>
+  <form method="post" action="{% url 'create_book' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Reservation</button>
+  </form>
+{% endblock %}
