@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from accounts.models import customuser
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Book
@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
 	last_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}))
 
 	class Meta:
-		model = User
+		model = customuser
 		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 	def __init__(self, *args, **kwargs):
