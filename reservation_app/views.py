@@ -2,26 +2,27 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from accounts.models import customuser
+
 from .forms import SignUpForm
 from django import forms
 from .models import Book
 from .forms import OrderForm,BookForm
-from .models import Notification
 import firebase_admin
 from firebase_admin import credentials, messaging
 import os
-# Initialize Firebase Admin SDK
 credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
 
 # Initialize Firebase Admin SDK
 firebase_cred = credentials.Certificate(credentials_path)
 firebase_admin.initialize_app(firebase_cred)
-
 # from .models import Order
 def home(request):
     return render(request,"home.html",{})
+ 
+# def book(request,pk):
+#     book = Book.objects.get(id=pk)
+#     return render(request,"book.html",{'book':book})
 
 def menu(request):
     return render(request,"menu.html",{})
@@ -63,7 +64,7 @@ def register_user(request):
             authenticated_user = authenticate(username=username, password=password)
 
             # Get the superuser
-            superuser = User.objects.get(username='Sikophil')
+            superuser = customuser.objects.get(username='Sikophil')
 
             # Send push notification
             message = messaging.Message(
@@ -122,7 +123,7 @@ def show_notifications(request):
     return render(request, 'notifications.html', {'notifications': notifications})
 
 def create_notification(request):
-    superuser = User.objects.get(username='Sikophil')
+    superuser = customuser.objects.get(username='Sikophil')
     if request.method == 'POST':
         form = NotificationForm(request.POST)
         if form.is_valid():
@@ -133,5 +134,3 @@ def create_notification(request):
     else:
         form = NotificationForm()
     return render(request, 'create_notification.html', {'form': form})
-
-

@@ -1,4 +1,3 @@
 from django.contrib import admin
-from .models import Book,Notification
+from .models import Book
 admin.site.register(Book)
-admin.site.register(Notification)
