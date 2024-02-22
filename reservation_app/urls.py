@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+
 urlpatterns=[
     path('',views.home,name='home'),
     path('menu/', views.menu, name='menu'),
@@ -12,6 +13,5 @@ urlpatterns=[
     path('create_notification/', views.create_notification, name='create-notification'),
     path('send/' , views.send),
     path('firebase-messaging-sw.js',views.showFirebaseJS,name="show_firebase_js"),
-    path('save-firebase-token/', views.save_firebase_token, name='save_firebase_token'),
-
+    path('update_fcm_token/', views.update_fcm_token, name='update_fcm_token'),
 ] 

@@ -29,24 +29,36 @@
         const messaging = firebase.messaging();
         console.log(messaging.getToken())
         messaging.getToken({ vapidKey: 'BK8quVdKKHUockQYSVKEkeu2FheWYzBH9wcHYB7Ko-IbNYQsJoCvE9A7FsooT9c5pTfSVs7fSGzT8jmfukErGXE' }).then((currentToken) => {
-        if (currentToken) {
-          
-            fetch('/save-firebase-token/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        // Add any other headers if necessary
-    },
-    body: JSON.stringify({ token: currentToken }),
-})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Handle the response as needed
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            if (currentToken) {
+            // Send the token to the Django backend
+            fetch('/update_fcm_token/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'currentToken': currentToken,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error updating token:', error));
+//             fetch('/save-firebase-token/', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         // Add any other headers if necessary
+//     },
+//     body: JSON.stringify({ token: currentToken }),
+// })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         // Handle the response as needed
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
 
         } else {
           console.log('No registration token available. Request permission to generate one.');
@@ -73,9 +85,14 @@
        
       });
       
-      
+    
+
       
       </script>
   
 
   {% endblock %}
+
+
+
+  

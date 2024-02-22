@@ -219,19 +219,35 @@ def showFirebaseJS(request):
     return HttpResponse(data,content_type="text/javascript")
 
 
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+
+# @csrf_exempt  # Make sure to add csrf_exempt decorator if you don't want to deal with CSRF tokens in this example
+# def save_firebase_token(request):
+#     if request.method == 'POST':
+#         # Assuming you send the token as a JSON object in the request body
+#         token = request.POST.get('token')
+
+#         # Save the token in your database or perform any other desired actions
+#         # Example:
+#         # YourModel.objects.create(firebase_token=token)
+
+#         return JsonResponse({'status': 'success'})
+#     else:
+#         return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
-@csrf_exempt  # Make sure to add csrf_exempt decorator if you don't want to deal with CSRF tokens in this example
-def save_firebase_token(request):
+@csrf_exempt
+@login_required
+def update_fcm_token(request):
     if request.method == 'POST':
-        # Assuming you send the token as a JSON object in the request body
-        token = request.POST.get('token')
-
-        # Save the token in your database or perform any other desired actions
-        # Example:
-        # YourModel.objects.create(firebase_token=token)
-
-        return JsonResponse({'status': 'success'})
+        current_token = request.POST.get('currentToken')
+        request.user.fcm_token = current_token
+        request.user.save()
+        return JsonResponse({'message': 'Token updated successfully'})
     else:
-        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+        return JsonResponse({'error': 'Invalid request method'})
