@@ -10,6 +10,15 @@
     
 
      <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/firebase-messaging-sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+            });
+    }
        var firebaseConfig = {
         apiKey: "AIzaSyCtnbzPNKXXP0ecFOdX6HnH0WAZdSTTEXo",
         authDomain: "triglis-8c70f.firebaseapp.com",
