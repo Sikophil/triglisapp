@@ -85,10 +85,12 @@
        
     // Check if the browser supports notifications
     if ("Notification" in window) {
+        console.log('Yes ');
         // Request permission to show notifications
         Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
                 // Create a notification
+                console.log('Yes 2');
                 const notification = new Notification("New Message", {
                     body: payload.message, // You can customize the body with the actual message
                 });
