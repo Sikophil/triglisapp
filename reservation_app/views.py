@@ -193,7 +193,7 @@ def index(request):
     return render(request , 'index.html')
 
 def send(request):
-    resgistration  = ['fvgbyCymRY-14C6V6UNRwu:APA91bHRemdcdwEUwzxjT7uVPmt7LbIzPUIVhpWoH6TlJMXkJ7YZI4oqC43AKl8kRJal5MZzV_gxOIGUaC_ceXYvJEILn9WtX3QDdvU9eZ9kmj6FvXzE8dJUNmV6j3vw40DQDSF-doxW'
+    resgistration  = ['fvgbyCymRY-14C6V6UNRwu:APA91bFgUdgi2l1Kj-IAuudxmhDSgXT7YegMDyGdadEkqB-mps4atFI9yQsjYkPZJTIdjdN5rVyfkseMxBwWr_sjn_mhF6h50j0-VyYCooUfe9EbMLke0jYNDLO4t4LYvO2p-WKVnioL'
     ]
     send_notification(resgistration , 'Code Keen added a new video' , 'Code Keen new video alert')
     return HttpResponse("sent")
