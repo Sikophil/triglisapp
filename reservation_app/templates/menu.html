@@ -79,6 +79,22 @@
          console.log("Unable to get permission to notify.", err);
        });
       
+       if ("Notification" in window) {
+        console.log('Yes ');
+        // Request permission to show notifications
+        Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+                // Create a notification
+                console.log('Yes 2');
+                const notification = new Notification("New Message", {
+                    body: 'YEEEEES', // You can customize the body with the actual message
+                });
+        
+        
+            }
+        });
+    }
+    else{console.log('No');}
       
         messaging.onMessage((payload) => {
         console.log('Message received. ', payload);
