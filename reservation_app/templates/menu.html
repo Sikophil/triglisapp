@@ -72,28 +72,7 @@
         messaging.onMessage((payload) => {
         console.log('Message received. ', payload);
        
-    // Check if the browser supports notifications
-    if ("Notification" in window) {
-        console.log('Yes ');
-        // Request permission to show notifications
-        Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-                // Create a notification
-                console.log('Yes 2');
-                const notification = new Notification("New Message", {
-                    body: payload.message, // You can customize the body with the actual message
-                });
-
-                // Optional: You can handle the click event on the notification
-                notification.onclick = () => {
-                    // Handle the click event, e.g., redirect to a specific page
-                    console.log("Notification clicked");
-                };
-            }
         });
-    }
-    else{console.log('No');}
-      });
       
     
 
