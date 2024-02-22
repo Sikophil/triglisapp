@@ -217,3 +217,21 @@ def showFirebaseJS(request):
          '});'
 
     return HttpResponse(data,content_type="text/javascript")
+
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt  # Make sure to add csrf_exempt decorator if you don't want to deal with CSRF tokens in this example
+def save_firebase_token(request):
+    if request.method == 'POST':
+        # Assuming you send the token as a JSON object in the request body
+        token = request.POST.get('token')
+
+        # Save the token in your database or perform any other desired actions
+        # Example:
+        # YourModel.objects.create(firebase_token=token)
+
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
