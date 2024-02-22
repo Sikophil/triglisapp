@@ -217,10 +217,9 @@ def showFirebaseJS(request):
          'const messaging=firebase.messaging();' \
          'messaging.setBackgroundMessageHandler(function (payload) {' \
          '    console.log(payload);' \
-         '    const notification=JSON.parse(payload);' \
+         '    const notification = payload.data;' \
          '    const notificationOption={' \
          '        body:notification.body,' \
-         '        icon:notification.icon' \
          '    };' \
          '    return self.registration.showNotification(payload.notification.title,notificationOption);' \
          '});'

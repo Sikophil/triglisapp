@@ -6,11 +6,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-messaging.js"></script>
-    <!-- <script src="/static/js/firebase-messaging-sw.js"></script>
 
-     -->
-
-
+    
 
      <script>
        var firebaseConfig = {
@@ -43,22 +40,6 @@
                 .then(response => response.json())
                 .then(data => console.log(data))
                 .catch(error => console.error('Error updating token:', error));
-//             fetch('/save-firebase-token/', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         // Add any other headers if necessary
-//     },
-//     body: JSON.stringify({ token: currentToken }),
-// })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         // Handle the response as needed
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//     });
 
         } else {
           console.log('No registration token available. Request permission to generate one.');
@@ -78,23 +59,6 @@
          .catch(function (err) {
          console.log("Unable to get permission to notify.", err);
        });
-      
-       if ("Notification" in window) {
-        console.log('Yes ');
-        // Request permission to show notifications
-        Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-                // Create a notification
-                console.log('Yes 2');
-                const notification = new Notification("New Message", {
-                    body: 'YEEEEES', // You can customize the body with the actual message
-                });
-        
-        
-            }
-        });
-    }
-    else{console.log('No');}
       
         messaging.onMessage((payload) => {
         console.log('Message received. ', payload);
