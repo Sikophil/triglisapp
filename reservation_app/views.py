@@ -20,9 +20,6 @@ import os
 def home(request):
     return render(request,"home.html",{})
  
-# def book(request,pk):
-#     book = Book.objects.get(id=pk)
-#     return render(request,"book.html",{'book':book})
 
 def menu(request):
     return render(request,"menu.html",{})

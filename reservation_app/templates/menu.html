@@ -5,9 +5,22 @@
 
 {% block content %}
 {% load static %}
-<img src="{% static 'images/icon.png' %}" alt="Your Image">
-    <style>
-        .menu{color:red}
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+<script src="{% static 'js/firebase.js' %}"></script>
 
-    </style>
+<script>
+    function requestPermission() {
+        console.log('Requesting permission...');
+        Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+                // Additional logic if permission is granted
+            }
+        });
+    }
+
+   
+</script>
+
+<button onclick="requestPermission()">Request Notification Permission</button>
 {% endblock %}
