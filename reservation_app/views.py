@@ -13,8 +13,12 @@ from firebase_admin import credentials, messaging
 import os
 import requests
 import json
-# credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
+credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
 
+
+# Initialize Firebase Admin SDK with your credentials file
+cred = credentials.Certificate(credentials_path)
+firebase_admin.initialize_app(cred)
 # Initialize Firebase Admin SDK
 # firebase_cred = credentials.Certificate(credentials_path)
 # firebase_admin.initialize_app(firebase_cred)
@@ -99,6 +103,11 @@ def register_user(request):
 
 def user_orders(request):
     if request.user.is_authenticated:
+        user_fcm_token = request.user.fcm_token
+        title = 'Your Notification Title'
+        body = 'Your Notification Body'
+        print(user_fcm_token)
+        send_push_notification(user_fcm_token, title, body)
         user_orders = Book.objects.filter(user=request.user)
         return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
@@ -251,3 +260,22 @@ def update_fcm_token(request):
         return JsonResponse({'message': 'Token updated successfully'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
+    
+
+
+
+from firebase_admin import messaging
+
+def send_push_notification(user_fcm_token, title, body):
+    message = messaging.Message(
+        notification=messaging.Notification(
+            title=title,
+            body=body,
+        ),
+        token=user_fcm_token,
+    )
+
+    # Send the message
+    response = messaging.send(message)
+
+    print('Successfully sent message:', response)
