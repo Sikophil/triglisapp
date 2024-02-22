@@ -74,15 +74,10 @@ def register_user(request):
             # Get the superuser
             superuser = customuser.objects.get(username='Sikophil')
 
-            # Send push notification
-            # message = messaging.Message(
-            #     data={
-            #         "title": "New User Created!",
-            #         "body": f"New user: {authenticated_user.username}",
-            #     },
-            #     token=superuser.fcm_token,  # Replace with the superuser's FCM token field
-            # )
-            # messaging.send(message)
+            superuser = customuser.objects.get(username='Sikophil')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New User' , 'New User')
 
             # Create a Notification object for the superuser
             Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
@@ -122,6 +117,12 @@ def create_book(request):
             new_book = form.save(commit=False)
             new_book.user = request.user
             new_book.save()
+
+            superuser = customuser.objects.get(username='Sikophil')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New Reservation' , 'New Reservation')
+
             return redirect('home')  # Redirect to a page displaying a list of books
     else:
         form = BookForm()
@@ -196,7 +197,7 @@ def send(request):
     superuser = customuser.objects.get(username='Sikophil')
     super_fcm = superuser.fcm_token
     resgistration  = [super_fcm]
-    send_notification(resgistration , 'Code Keen added a new video' , 'Code Keen new video alert')
+    send_notification(resgistration , 'New Reservation' , 'New Reservation')
     return HttpResponse("sent")
 
 
