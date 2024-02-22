@@ -193,8 +193,9 @@ def index(request):
     return render(request , 'index.html')
 
 def send(request):
-    resgistration  = ['fvgbyCymRY-14C6V6UNRwu:APA91bFgUdgi2l1Kj-IAuudxmhDSgXT7YegMDyGdadEkqB-mps4atFI9yQsjYkPZJTIdjdN5rVyfkseMxBwWr_sjn_mhF6h50j0-VyYCooUfe9EbMLke0jYNDLO4t4LYvO2p-WKVnioL'
-    ]
+    superuser = customuser.objects.get(username='Sikophil')
+    super_fcm = superuser.fcm_token
+    resgistration  = [super_fcm]
     send_notification(resgistration , 'Code Keen added a new video' , 'Code Keen new video alert')
     return HttpResponse("sent")
 
