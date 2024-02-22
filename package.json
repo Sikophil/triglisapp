@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "express": "^4.18.2",
     "firebase": "^10.8.0"
-  }
+  },
+  "name": "triglisapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

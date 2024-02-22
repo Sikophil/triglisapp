@@ -10,4 +10,6 @@ urlpatterns=[
     path('create/', views.create_book, name='create_book'),
     path('notifications/', views.show_notifications, name='show-notifications'),
     path('create_notification/', views.create_notification, name='create-notification'),
+    path('send/' , views.send),
+    path('firebase-messaging-sw.js',views.showFirebaseJS,name="show_firebase_js"),
 ] 

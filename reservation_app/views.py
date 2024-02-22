@@ -11,6 +11,8 @@ from .forms import OrderForm,BookForm
 import firebase_admin
 from firebase_admin import credentials, messaging
 import os
+import requests
+import json
 # credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
 
 # Initialize Firebase Admin SDK
@@ -22,7 +24,12 @@ def home(request):
  
 
 def menu(request):
-    return render(request,"menu.html",{})
+    if request.user.is_authenticated:
+        return render(request, 'menu.html', {'users': request.user})
+    else:
+        # Handle the case when the user is not authenticated, e.g., redirect to login page
+        return render(request, 'login.html')
+    
 
 def login_user(request):
     if request.method == "POST":
@@ -131,3 +138,82 @@ def create_notification(request):
     else:
         form = NotificationForm()
     return render(request, 'create_notification.html', {'form': form})
+
+
+
+
+
+###########
+from django.http.request import HttpHeaders
+from django.shortcuts import render
+
+from django.http import HttpResponse
+import requests
+import json
+
+
+
+def send_notification(registration_ids , message_title , message_desc):
+    fcm_api = "AAAAS_Pnbmo:APA91bE2WuxV2c2L7sbnmzBd9JKaixg6yhgd5GXvETekUzbQltTApy1y7HfWbATx2D2HERXC1aRcAjrasnoBdd0Q7Xtx_s1CCS4Xw-6fWx8fIaiMYjG2_BIqZv1Tz01xkhDjK3n0cHVk"
+    url = "https://fcm.googleapis.com/fcm/send"
+    
+    headers = {
+    "Content-Type":"application/json",
+    "Authorization": 'key='+fcm_api}
+
+    payload = {
+        "registration_ids" :registration_ids,
+        "priority" : "high",
+        "notification" : {
+            "body" : message_desc,
+            "title" : message_title,
+            "image" : "https://i.ytimg.com/vi/m5WUPHRgdOA/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDwz-yjKEdwxvKjwMANGk5BedCOXQ",
+            "icon": "https://yt3.ggpht.com/ytc/AKedOLSMvoy4DeAVkMSAuiuaBdIGKC7a5Ib75bKzKO3jHg=s900-c-k-c0x00ffffff-no-rj",
+            
+        }
+    }
+
+    result = requests.post(url,  data=json.dumps(payload), headers=headers )
+    print(result.json())
+
+
+
+
+
+def index(request):
+    return render(request , 'index.html')
+
+def send(request):
+    resgistration  = ['dT-B10rGnJH1mrW4tneHHS:APA91bEe8C-yzsv37I2a01UQgoCzAVP2vIELcT4_MgQIcw-IeP9En8JTlrGi0Nml-LITQSm0yC8sey4kAUpoVrS_eljvJy4tF4O03bJoQAOY4L9V7l1fLoD-GK3_8l-wsmO38vPpDTRZ'
+    ]
+    send_notification(resgistration , 'Code Keen added a new video' , 'Code Keen new video alert')
+    return HttpResponse("sent")
+
+
+
+
+def showFirebaseJS(request):
+    data='importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");' \
+         'importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js"); ' \
+         'var firebaseConfig = {' \
+         '        apiKey: "AIzaSyCtnbzPNKXXP0ecFOdX6HnH0WAZdSTTEXo",' \
+         '        authDomain: "triglis-8c70f.firebaseapp.com",' \
+         '        projectId: "triglis-8c70f",' \
+         '        storageBucket: "triglis-8c70f.appspot.com",' \
+         '        messagingSenderId: "326214577770",' \
+         '        appId: "1:326214577770:web:cb91775ceef9401eab2413",' \
+         '        measurementId: "G-WTXNXDVTZ7"' \
+         ' };' \
+         'firebase.initializeApp(firebaseConfig);' \
+         'const messaging=firebase.messaging();' \
+         'messaging.setBackgroundMessageHandler(function (payload) {' \
+         '    console.log(payload);' \
+         '    const notification=JSON.parse(payload);' \
+         '    const notificationOption={' \
+         '        body:notification.body,' \
+         '        icon:notification.icon' \
+         '    };' \
+         '    return self.registration.showNotification(payload.notification.title,notificationOption);' \
+         '});'
+
+    return HttpResponse(data,content_type="text/javascript")
