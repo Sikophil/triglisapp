@@ -7,14 +7,14 @@
 
    
 <style>
-    li {
-      font-size: 5vh;
-      margin-bottom: 1vh; /* Adjust the value as needed */
+    label {
+      font-size: 4vh;
+      margin-bottom: 2vh; /* Adjust the value as needed */
     }
   </style>
      {% if user.is_authenticated %}
      {% for order in user_orders %}
-     <li>{{ order.date }} - {{ order.time }} -Guests: {{ order.guests }} <br> Confirmed: {{ order.confirmation }}</li>
+     <label>{{ order.date }} <br>{{ order.time }} <br> Guests: {{ order.guests }} <br> Confirmed: {{ order.confirmation }}<br><br></label>
      
      {% endfor %}
      {% endif %}
