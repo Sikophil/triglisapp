@@ -73,8 +73,6 @@ def register_user(request):
 
             # Get the superuser
             superuser = customuser.objects.get(username='Sikophil')
-
-            superuser = customuser.objects.get(username='Sikophil')
             super_fcm = superuser.fcm_token
             resgistration  = [super_fcm]
             send_notification(resgistration , 'New User' , 'New User')
