@@ -5,13 +5,16 @@
 
 {% block content %}
 
-    <style>
-        .mybook{color:red}
-
-    </style>
+   
+<style>
+    li {
+      font-size: 5vh;
+      margin-bottom: 1vh; /* Adjust the value as needed */
+    }
+  </style>
      {% if user.is_authenticated %}
      {% for order in user_orders %}
-     <li>{{ order.date }} - {{ order.time }} - {{ order.confirmation }}</li>
+     <li>{{ order.date }} - {{ order.time }} -Guests: {{ order.guests }} <br> Confirmed: {{ order.confirmation }}</li>
      
      {% endfor %}
      {% endif %}

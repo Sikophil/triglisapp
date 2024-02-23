@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
-    time = models.TimeField(default='12:00:00')
+    time = models.TimeField(default='12:30:00')
     date = models.DateField(default='2024-02-19')
     guests = models.IntegerField(default=1)
     confirmation= models.CharField(default='False', max_length=20)
