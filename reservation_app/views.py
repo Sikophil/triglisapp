@@ -116,10 +116,6 @@ def create_book(request):
             resgistration  = [super_fcm]
             send_notification(resgistration , 'New Reservation' , 'New Reservation')
 
-            superuser = customuser.objects.get(username='jackfarry')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New Reservation' , 'New Reservation')
 
             return redirect('home')  # Redirect to a page displaying a list of books
     else:
