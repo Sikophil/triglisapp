@@ -33,26 +33,34 @@ class SignUpForm(UserCreationForm):
         #   <span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
-class OrderForm(forms.ModelForm):
-    date = forms.CharField( max_length=100,label="Order Date", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}))
-    time = forms.CharField(max_length=100,label="Order Time", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'HH:MM'}))
-    guests = forms.CharField(max_length=100,label="Number of guests", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0'}))
+# class OrderForm(forms.ModelForm):
+#     # date = forms.CharField( max_length=100,label="Order Date", widget=forms.TextInput(attrs={'class': 'form-control form form_2', 'placeholder': 'YYYY-MM-DD'}))
+#     # time = forms.CharField(max_length=100,label="Order Time", widget=forms.TextInput(attrs={'class': 'form-control form form_1', 'placeholder': 'HH:MM'}))
+#     # guests = forms.CharField(max_length=100,label="Number of guests", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0'}))
     
-    class Meta:
-        model = Book
-        fields = ['time', 'date','guests']
+#     class Meta:
+#         model = Book
+#         fields = ['time', 'date','guests']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['time'].widget.attrs['class'] = 'form-control'
-        self.fields['date'].widget.attrs['class'] = 'form-control'
-        self.fields['guests'].widget.attrs['class'] = 'form-control'
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['time'].widget.attrs['class'] = 'form-control form form_1'
+#         self.fields['date'].widget.attrs['class'] = 'form-control form form_2'
+#         self.fields['guests'].widget.attrs['class'] = 'form-control'
         
 
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['time', 'date','guests']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['time'].widget.attrs['class'] = 'form-control form form_2'
+        self.fields['time'].label = ''
+        self.fields['date'].widget.attrs['class'] = 'form-control form form_4'
+        self.fields['date'].label = ''
+        self.fields['guests'].widget.attrs['class'] = 'form-control form form_6'
+        self.fields['guests'].label = ''
 
 
 class NotificationForm(forms.Form):

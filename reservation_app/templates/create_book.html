@@ -2,10 +2,45 @@
 {% extends 'base.html' %}  <!-- Extend a base template if you have one -->
 
 {% block content %}
-  <h2>Create a New Reservation</h2>
+<style>
+
+  .form{  position: fixed;
+          width:40vw;
+          left: 30vw;
+          height:8vh;
+          border: white;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 5vw;
+          cursor: pointer;
+          background-color: #000000;
+          border-radius: 2vw;}
+    .text{  position: fixed;
+          width:40vw;
+          left: 30vw;
+          height:8vh;
+          text-align: center;
+          text-decoration: none;
+          font-size: 5vw;
+          cursor: pointer;
+          border-radius: 2vw;}
+  
+  .form_1{bottom: 80vh;}
+  .form_2{bottom: 75vh;}
+  .form_3{bottom: 60vh;}
+  .form_4{bottom: 55vh;}
+  .form_5{bottom: 40vh;}
+  .form_6{bottom: 35vh;}
+  .form_7{bottom: 20vh;}
+  </style>
   <form method="post" action="{% url 'create_book' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Create Reservation</button>
+    <label class="text form_1">Time</label>
+    <label class="text form_3">Date</label>
+    <label class="text form_5">Number of guests</label>
+    <button class="form form_7">Create Reservation</button>
   </form>
 {% endblock %}
