@@ -72,29 +72,14 @@ def register_user(request):
             authenticated_user = authenticate(username=username, password=password)
 
             # # Get the superuser
-            superuser = customuser.objects.get(username='safarimac')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New User' , 'New User')
+            # superuser = customuser.objects.get(username='safarimac')
+            # super_fcm = superuser.fcm_token
+            # resgistration  = [super_fcm]
+            # send_notification(resgistration , 'New User' , 'New User')
 
-            superuser = customuser.objects.get(username='safariios')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New User' , 'New User')
-
-            superuser = customuser.objects.get(username='chromemac')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New User' , 'New User')
-
-            superuser = customuser.objects.get(username='chromeios')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New User' , 'New User')
-
-            # superusers = customuser.objects.filter(is_superuser=True)
-            # registration_tokens = [superuser.fcm_token for superuser in superusers]
-            # send_notification(registration_tokens, 'New User', 'New User')
+            superusers = customuser.objects.filter(is_superuser=True)
+            registration_tokens = [superuser.fcm_token for superuser in superusers]
+            send_notification(registration_tokens, 'New User', 'New User')
 
             # Create a Notification object for the superuser
             # Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
@@ -130,11 +115,13 @@ def create_book(request):
             new_book.user = request.user
             new_book.save()
 
-            superuser = customuser.objects.get(username='Sikophil')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New Reservation' , 'New Reservation')
-
+            # superuser = customuser.objects.get(username='Sikophil')
+            # super_fcm = superuser.fcm_token
+            # resgistration  = [super_fcm]
+            # send_notification(resgistration , 'New Reservation' , 'New Reservation')
+            superusers = customuser.objects.filter(is_superuser=True)
+            registration_tokens = [superuser.fcm_token for superuser in superusers]
+            send_notification(registration_tokens, 'New Reservation', 'New Reservation')
 
             return redirect('home')  # Redirect to a page displaying a list of books
     else:
@@ -150,13 +137,13 @@ def show_notifications(request):
     return render(request, 'notifications.html', {'notifications': notifications})
 
 def create_notification(request):
-    superuser = customuser.objects.get(username='Sikophil')
+    # superuser = customuser.objects.get(username='Sikophil')
     if request.method == 'POST':
         form = NotificationForm(request.POST)
         if form.is_valid():
             message = form.cleaned_data['message']
             Notification.objects.create(user=request.user, message=message)
-            Notification.objects.create(user=superuser, message=message)
+            # Notification.objects.create(user=superuser, message=message)
             return redirect('show-notifications')
     else:
         form = NotificationForm()
@@ -207,7 +194,7 @@ def index(request):
     return render(request , 'index.html')
 
 def send(request):
-    superuser = customuser.objects.get(username='Sikophil')
+    # superuser = customuser.objects.get(username='Sikophil')
     super_fcm = superuser.fcm_token
     resgistration  = [super_fcm]
     send_notification(resgistration , 'New Reservation' , 'New Reservation')
