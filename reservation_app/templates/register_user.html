@@ -5,8 +5,39 @@
 
 {% block content %}
 <style>
-  .register{color:red;bottom: 20vh;}
 
+.form{  position: fixed;
+        width:40vw;
+        left: 30vw;
+        height:10vh;
+        border: white;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 5vw;
+        cursor: pointer;
+        background-color: #000000;
+        border-radius: 2vw;}
+.register{
+  position: fixed;
+        width:25vw;
+        height:10vh;
+        border: white;
+        color:red;bottom: 15vh;right: 1vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 5vw;
+        cursor: pointer;
+        background-color: #000000;
+        border-radius: 2vw;}
+.form_1{bottom: 90vh;}
+.form_2{bottom: 75vh;}
+.form_3{bottom: 60vh;}
+.form_4{bottom: 45vh;}
+.form_5{bottom: 30vh;}
+.form_6{bottom: 15vh;}
 </style>
 <form method="POST" action="{% url 'register_user'%}">
   {% csrf_token %}
