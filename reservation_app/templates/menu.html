@@ -9,6 +9,32 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js"></script>
     <link rel="manifest" href="{% static 'manifest.json' %}">
 
+    <div id="icon-container">
+        {% with icon_url=manifest_data.icons.0.src %}
+            <img src="{{ icon_url }}" alt="Icon">
+        {% endwith %}
+    </div>
+    
+    <script>
+        fetch('/manifest/')
+            .then(response => response.json())
+            .then(manifestData => {
+                // Use manifestData to access values (name, short name, icon)
+                console.log('Manifest Data:', manifestData);
+
+                // Display the icon on the page
+                const iconContainer = document.getElementById('icon-container');
+                const iconImage = document.createElement('img');
+                iconImage.src = manifestData.icons[0].src;
+                iconImage.alt = 'Icon';
+                iconContainer.appendChild(iconImage);
+            })
+            .catch(error => console.error('Error fetching manifest:', error));
+    </script>
+
+
+
+
     <script type="module">
         if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/firebase-messaging-sw.js')

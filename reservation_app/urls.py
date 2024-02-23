@@ -16,4 +16,6 @@ urlpatterns=[
     # path('firebase-messaging-sw.js',views.showFirebaseJS,name="show_firebase_js"),
     re_path('firebase-messaging-sw.js', serve, {'document_root': settings.STATIC_ROOT, 'path': 'js/firebase-messaging-sw.js'}),
     path('update_fcm_token/', views.update_fcm_token, name='update_fcm_token'),
+    path('manifest/', views.manifest_view, name='manifest'),
+    path('icon/', views.iconesave, name='icon'),
 ] 

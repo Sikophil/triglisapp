@@ -149,9 +149,20 @@ def create_notification(request):
         form = NotificationForm()
     return render(request, 'create_notification.html', {'form': form})
 
+from django.conf import settings
+from django.http import JsonResponse
 
+def manifest_view(request):
+    manifest_path = os.path.join(settings.STATIC_ROOT, 'manifest.json')  # Assuming the manifest file is in your static folder
+    with open(manifest_path) as manifest_file:
+        manifest_data = json.load(manifest_file)
+    return JsonResponse(manifest_data)
 
-
+def icon_view(request):
+    manifest_path = os.path.join(settings.STATIC_ROOT, 'icons/icon.png')  # Assuming the manifest file is in your static folder
+    with open(manifest_path) as manifest_file:
+        manifest_data = json.load(manifest_file)
+    return JsonResponse(manifest_data)
 
 ###########
 from django.http.request import HttpHeaders
@@ -187,11 +198,10 @@ def send_notification(registration_ids , message_title , message_desc):
     print(result.json())
 
 
-
-
-
-def index(request):
-    return render(request , 'index.html')
+def iconesave(request):
+    image_path = os.path.join(settings.STATIC_ROOT, 'icons/icon.png')  # Adjust the path accordingly
+    with open(image_path, 'rb') as f:
+        return HttpResponse(f.read(), content_type='image/png')
 
 # def send(request):
 #     # superuser = customuser.objects.get(username='Sikophil')
