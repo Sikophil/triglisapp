@@ -71,14 +71,21 @@ def register_user(request):
             password = form.cleaned_data['password1']
             authenticated_user = authenticate(username=username, password=password)
 
-            # Get the superuser
-            superuser = customuser.objects.get(username='Sikophil')
-            super_fcm = superuser.fcm_token
-            resgistration  = [super_fcm]
-            send_notification(resgistration , 'New User' , 'New User')
+            # # Get the superuser
+            # superuser = customuser.objects.get(username='Sikophil')
+            # super_fcm = superuser.fcm_token
+            # resgistration  = [super_fcm]
+            # send_notification(resgistration , 'New User' , 'New User')
+
+            superusers = customuser.objects.filter(is_superuser=True)
+
+
+            registration_tokens = [superuser.fcm_token for superuser in superusers]
+
+            send_notification(registration_tokens, 'New User', 'New User')
 
             # Create a Notification object for the superuser
-            Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
+            # Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
 
             messages.success(request, "New User!")
             return redirect('home')
