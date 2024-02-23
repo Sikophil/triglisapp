@@ -198,8 +198,8 @@ def send(request):
 
 
 def showFirebaseJS(request):
-    data='importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");' \
-         'importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js"); ' \
+    data='importScripts("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");' \
+         'importScripts("https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js"); ' \
          'var firebaseConfig = {' \
          '        apiKey: "AIzaSyCtnbzPNKXXP0ecFOdX6HnH0WAZdSTTEXo",' \
          '        authDomain: "triglis-8c70f.firebaseapp.com",' \
