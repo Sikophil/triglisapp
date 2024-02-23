@@ -5,20 +5,54 @@
 
 {% block content %}
 <style>
-  .register{color:red;bottom: 20vh;}
-
+  .register{color:white;bottom: 20vh;}
+  .login_user{color:red}
+  .form-label{color:black;
+             font-size: 5vw;
+            position: fixed;}
+  .form-label1{bottom:90vh;
+              left:40vw;
+              }
+  .form-label2{bottom:70vh;
+              left:40vw;
+              }
+  .username{
+    width:40vw;
+    left: 30vw;
+    bottom:80vh
+  }
+  .password{
+    bottom:60vh
+  }
+    .tobook1 {
+        position: fixed;
+        bottom: 40vh;
+        left:40vw;
+        width:20vw;
+        height:10vh;
+        border: white;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 5vw;
+        cursor: pointer;
+        background-color: #000000;
+        border-radius: 2vw;
+        }
+      
 </style>
 <a href="{% url 'register_user' %}">
-  <button class="base_buttons register">Register</button>
+  <button class="base_buttons register">New User</button>
 </a>
 <form method="POST" action="{% url 'login_user'%}">
   {% csrf_token %}
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Username</label>
-    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" name="password">
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <label for="exampleInputEmail1" class="form-label form-label1">Username</label>
+    <input type="text" class="tobook username" name="username" aria-describedby="emailHelp">
+    <label for="exampleInputPassword1" class="form-label form-label2">Password</label>
+    <input type="password" class="tobook username password" name="password">
+  <button type="submit" class="tobook1">Submit</button>
 </form>
     
 {% if messages %}

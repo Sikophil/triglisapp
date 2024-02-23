@@ -4,6 +4,9 @@
 
 {% block content %}
 {% load static %}
+<style>
+.menu{color:red}
+</style>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js"></script>
@@ -32,7 +35,7 @@
             .catch(error => console.error('Error fetching manifest:', error));
     </script> -->
 
-
+    
 
 
     <script type="module">
@@ -197,7 +200,7 @@
         });
     </script>
 
-    <button id="requestPermissionButton">Request Notification Permission</button>
+    <button class="tobook" id="requestPermissionButton">Request Notification Permission</button>
   
   {% endblock %}
 

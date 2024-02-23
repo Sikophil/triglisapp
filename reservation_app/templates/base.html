@@ -34,6 +34,24 @@
     font-size: 4vw;
     background-color: #000000;
 }
+    .tobook {
+        position: fixed;
+        bottom: 70vh;
+        left:10vw;
+        width:80vw;
+        height:10vh;
+        border: white;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 5vw;
+        cursor: pointer;
+        background-color: #000000;
+        border-radius: 2vw;
+        }
+
+
     .home{ left: 0}
     .menu{ left: 25vw}
     .mybook{ left: 50vw}
@@ -63,7 +81,7 @@
         <button class="base_buttons home">Home</button>
     </a>
     <a href="{% url 'menu' %}">
-        <button class="base_buttons menu">Menu</button>
+        <button class="base_buttons menu">Settings</button>
     </a>
     <a href="{% url 'user_orders' %}">
         <button class="base_buttons mybook">Reservations</button>
