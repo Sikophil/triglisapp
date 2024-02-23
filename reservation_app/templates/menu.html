@@ -58,15 +58,15 @@
       });
       
       
-    //     messaging
-    //      .requestPermission()
-    //      .then(function () {
-    //        console.log("Notification permission granted.");
-    //        return messaging.getToken()
-    //      })
-    //      .catch(function (err) {
-    //      console.log("Unable to get permission to notify.", err);
-    //    });
+        messaging
+         .requestPermission()
+         .then(function () {
+           console.log("Notification permission granted.");
+           return messaging.getToken()
+         })
+         .catch(function (err) {
+         console.log("Unable to get permission to notify.", err);
+       });
       
         messaging.onMessage((payload) => {
         console.log('Message received. ', payload);
