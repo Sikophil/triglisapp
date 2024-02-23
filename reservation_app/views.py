@@ -96,11 +96,6 @@ def register_user(request):
 
 def user_orders(request):
     if request.user.is_authenticated:
-        user_fcm_token = request.user.fcm_token
-        title = 'Your Notification Title'
-        body = 'Your Notification Body'
-        print(user_fcm_token)
-        send_push_notification(user_fcm_token, title, body)
         user_orders = Book.objects.filter(user=request.user)
         return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
