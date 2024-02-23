@@ -72,17 +72,29 @@ def register_user(request):
             authenticated_user = authenticate(username=username, password=password)
 
             # # Get the superuser
-            # superuser = customuser.objects.get(username='Sikophil')
-            # super_fcm = superuser.fcm_token
-            # resgistration  = [super_fcm]
-            # send_notification(resgistration , 'New User' , 'New User')
+            superuser = customuser.objects.get(username='safarimac')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New User' , 'New User')
 
-            superusers = customuser.objects.filter(is_superuser=True)
+            superuser = customuser.objects.get(username='safariios')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New User' , 'New User')
 
+            superuser = customuser.objects.get(username='chromemac')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New User' , 'New User')
 
-            registration_tokens = [superuser.fcm_token for superuser in superusers]
+            superuser = customuser.objects.get(username='chromeios')
+            super_fcm = superuser.fcm_token
+            resgistration  = [super_fcm]
+            send_notification(resgistration , 'New User' , 'New User')
 
-            send_notification(registration_tokens, 'New User', 'New User')
+            # superusers = customuser.objects.filter(is_superuser=True)
+            # registration_tokens = [superuser.fcm_token for superuser in superusers]
+            # send_notification(registration_tokens, 'New User', 'New User')
 
             # Create a Notification object for the superuser
             # Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
