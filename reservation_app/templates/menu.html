@@ -115,12 +115,56 @@
                 });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const permissionButton = document.getElementById('requestPermissionButton');
+
+        //     if (permissionButton) {
+        //         permissionButton.addEventListener('click', function () {
+        //             requestNotificationPermission();
+        //         });
+        //     }
+        // });
+
+
+    // <!-- <button id="requestPermissionButton">Request Notification Permission</button> -->
+
+    document.addEventListener('DOMContentLoaded', function () {
             const permissionButton = document.getElementById('requestPermissionButton');
 
             if (permissionButton) {
                 permissionButton.addEventListener('click', function () {
-                    requestNotificationPermission();
+                    // Request notification permission when the button is clicked
+                    Notification.requestPermission()
+                        .then(function (permission) {
+                            console.log('Notification permission:', permission);
+                            if (permission === 'granted') {
+                                // Handle permission granted
+                                messaging.getToken().then(function (currentToken) {
+                                    // Send the token to the Django backend
+                                    if (currentToken) {
+                                        fetch('/update_fcm_token/', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/x-www-form-urlencoded',
+                                            },
+                                            body: new URLSearchParams({
+                                                'currentToken': currentToken,
+                                            }),
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => console.log(data))
+                                            .catch(error => console.error('Error updating token:', error));
+                                    } else {
+                                        console.log('No registration token available. Request permission to generate one.');
+                                    }
+                                }).catch(function (err) {
+                                    console.log('An error occurred while retrieving token. ', err);
+                                });
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log('Unable to get permission to notify.', err);
+                        });
                 });
             }
         });

@@ -193,12 +193,12 @@ def send_notification(registration_ids , message_title , message_desc):
 def index(request):
     return render(request , 'index.html')
 
-def send(request):
-    # superuser = customuser.objects.get(username='Sikophil')
-    super_fcm = superuser.fcm_token
-    resgistration  = [super_fcm]
-    send_notification(resgistration , 'New Reservation' , 'New Reservation')
-    return HttpResponse("sent")
+# def send(request):
+#     # superuser = customuser.objects.get(username='Sikophil')
+#     super_fcm = superuser.fcm_token
+#     resgistration  = [super_fcm]
+#     send_notification(resgistration , 'New Reservation' , 'New Reservation')
+#     return HttpResponse("sent")
 
 
 
