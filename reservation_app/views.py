@@ -25,7 +25,23 @@ firebase_admin.initialize_app(cred)
 # from .models import Order
 def home(request):
     return render(request,"home.html",{})
- 
+from django.db import transaction
+def confirm(request):
+    books = Book.objects.all()
+
+# Use a transaction for atomicity
+    with transaction.atomic():
+        for book in books:
+        # Check if confirmation value needs to be changed
+            if book.confirmation != 'True':
+                book.confirmation = 'True'
+                user =book.user
+                registration_tokens = [user.fcm_token]
+                send_notification(registration_tokens, 'Confirmed', 'Confirmed')
+
+
+                book.save()
+    return render(request, "home.html")
 
 def menu(request):
     if request.user.is_authenticated:
@@ -98,10 +114,21 @@ def register_user(request):
 
 # views.py
 
+def orders_admin(request):
+    if request.user.is_superuser:
+        user_orders = Book.objects.filter(confirmation='False')
+        return render(request, 'orders_admin.html', {'user_orders': user_orders})
+    else:
+        return redirect('home')
+
+
 def user_orders(request):
     if request.user.is_authenticated:
-        user_orders = Book.objects.filter(user=request.user)
-        return render(request, 'user_orders.html', {'user_orders': user_orders})
+        if request.user.is_superuser:
+            return redirect('orders_admin')
+        else:
+            user_orders = Book.objects.filter(user=request.user)
+            return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
         # Handle the case when the user is not authenticated, e.g., redirect to login page
         return render(request, 'login.html')

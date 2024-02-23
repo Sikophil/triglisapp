@@ -11,8 +11,10 @@
     </style>
      {% if user.is_authenticated %}
      {% for order in user_orders %}
-     <li>{{ order.date }} - {{ order.time }} - {{ order.confirmation }}</li>
-     
+     <li>{{ order.date }} - {{ order.time }}- {{ order.confirmation }}</li>
+     <a href="{% url 'confirm' %}">
+        <button >confirm</button>
+    </a>
      {% endfor %}
      {% endif %}
      
