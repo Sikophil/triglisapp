@@ -3,10 +3,11 @@
 {% block title %}Your Page Title{% endblock %}
 
 {% block content %}
+{% load static %}
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js"></script>
-    
+    <link rel="manifest" href="{% static 'manifest.json' %}">
 
     <script type="module">
         if ('serviceWorker' in navigator) {
