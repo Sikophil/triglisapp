@@ -3,13 +3,12 @@
 {% block title %}Your Page Title{% endblock %}
 
 {% block content %}
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js"></script>
     
 
-     <script>
+    <script type="module">
         if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/firebase-messaging-sw.js')
             .then((registration) => {
@@ -59,15 +58,15 @@
       });
       
       
-        messaging
-         .requestPermission()
-         .then(function () {
-           console.log("Notification permission granted.");
-           return messaging.getToken()
-         })
-         .catch(function (err) {
-         console.log("Unable to get permission to notify.", err);
-       });
+    //     messaging
+    //      .requestPermission()
+    //      .then(function () {
+    //        console.log("Notification permission granted.");
+    //        return messaging.getToken()
+    //      })
+    //      .catch(function (err) {
+    //      console.log("Unable to get permission to notify.", err);
+    //    });
       
         messaging.onMessage((payload) => {
         console.log('Message received. ', payload);
@@ -120,7 +119,6 @@
 
     <button id="requestPermissionButton">Request Notification Permission</button>
   
-  <!-- <button id="requestPermissionButton">Request Notification Permission</button> -->
   {% endblock %}
 
 
