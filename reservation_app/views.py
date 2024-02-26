@@ -25,6 +25,10 @@ firebase_admin.initialize_app(cred)
 # from .models import Order
 def home(request):
     return render(request,"home.html",{})
+
+def menu(request):
+    return render(request,"karte.html",{})
+
 from django.db import transaction
 def confirm(request):
     books = Book.objects.all()
@@ -43,9 +47,9 @@ def confirm(request):
                 book.save()
     return render(request, "home.html")
 
-def menu(request):
+def account(request):
     if request.user.is_authenticated:
-        return render(request, 'menu.html', {'users': request.user})
+        return render(request, 'account.html', {'users': request.user})
     else:
         # Handle the case when the user is not authenticated, e.g., redirect to login page
         return render(request, 'login.html')

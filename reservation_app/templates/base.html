@@ -5,34 +5,52 @@
     
 <head>
 
-    <title>{% block title %}Default Title{% endblock %}</title>
-    <!-- Здесь могут быть ваши общие стили, скрипты и другие мета-теги -->
-    <!-- <link rel="apple-touch-icon" href="https://cdn.glitch.com/49d34dc6-8fbd-46bb-8221-b99ffd36f1af%2Ftouchicon-180.png?v=1566411949736"> -->
+    <title>{% block title %}Home{% endblock %}</title>
     
     {% load static %}
     <link rel="apple-touch-icon" href="/static/icons/icon.png">
     <link rel="manifest" href="{% static 'manifest.json' %}">
     <style>
-    
-        /* Здесь могут быть ваши общие стили для кнопок и других элементов */
-    /* Your existing styles */
+        @font-face {
+            font-family: 'Dreaming Outloud Pro';
+            src: url("{% static 'fonts/FontsFree-Net-Dreaming.ttf' %}") format('truetype');
+        }
 
-    /* Container styles for the bottom-left button */
+    :root {
+            --orange:#ff6b01;
+            --yellow:#ff9900;
+            --red:#ce2200;
+            --button:black;
+            --text:white;
+        }
+    body {  
+        max-width: 200px;
+        /* background: radial-gradient(circle, #6169ff ,#04ffff); */
+        /* background: linear-gradient(to right, #ff7e5f, #feb47b); */
+        background: rgb(255, 215, 141);
+        
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
     .base_buttons {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     bottom: 0;
     width: 25vw;
     height: 8vh;
     padding:2vh 2vw;
-    color: white;
+    color:var(--text);
     text-align: center;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* font-family: 'Dreaming Outloud Pro'; */
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 3vw;
     cursor: pointer;
-    font-size: 4vw;
-    background-color: #000000;
+    background-color: var(--button);
 }
     .tobook {
         position: fixed;
@@ -40,33 +58,28 @@
         left:10vw;
         width:80vw;
         height:10vh;
-        border: white;
-        color: white;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        /* border: 10px solid var(--red); */
+        color:var(--text);
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 5vw;
         cursor: pointer;
-        background-color: #000000;
         border-radius: 2vw;
+        background-color: var(--button);
         }
 
-
+        button img {
+        
+            margin-bottom: -4vh; 
+        }
     .home{ left: 0}
     .menu{ left: 25vw}
     .mybook{ left: 50vw}
     .login_user{ left: 75vw}
     .logout_user{ left: 75vw}
-    body {
-            /* Linear Gradient */
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            
-            /* Radial Gradient */
-            /* background: radial-gradient(circle, #ff7e5f, #feb47b); */
-            
-            /* You can customize the colors and direction as per your preference */
-            /* Add more color stops if needed */
-        }
+
 
     </style>
 </head>
@@ -78,21 +91,42 @@
 
     
     <a href="{% url 'home' %}">
-        <button class="base_buttons home">Home</button>
+        <button class="base_buttons home">
+            <img src="{% static 'icons/home_out.png' %}" width=65vh height=65vh>
+            <br>
+            Startseite
+
+        </button>
     </a>
     <a href="{% url 'menu' %}">
-        <button class="base_buttons menu">Settings</button>
+        <button class="base_buttons menu">
+            <img src="{% static 'icons/menu.png' %}" width=65vh height=65vh>
+            <br>
+            Menu
+        </button>
     </a>
     <a href="{% url 'user_orders' %}">
-        <button class="base_buttons mybook">Reservations</button>
+        <button class="base_buttons mybook">
+            <img src="{% static 'icons/notebook.png' %}" width=65vh height=65vh>
+            <br>
+            Reservirungen
+        </button>
     </a>
     {% if user.is_authenticated %}
-    <a href="{% url 'logout_user' %}">
-        <button class="base_buttons logout_user">Logout</button>
+    <a href="{% url 'account' %}">
+        <button class="base_buttons login_user">
+            <img src="{% static 'icons/account.png' %}" width=65vh height=65vh>
+            <br>
+            Account
+        </button>
     </a>
     {% else %} 
     <a href="{% url 'login_user' %}">
-        <button class="base_buttons login_user">Login</button>
+        <button class="base_buttons login_user">
+            <img src="{% static 'icons/login.png' %}" width=65vh height=65vh>
+            <br>
+            Login
+        </button>
     </a>
     
     {% endif %}
