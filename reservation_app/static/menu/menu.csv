@@ -1,27 +1,39 @@
-item_name,item_description,item_price,item_category,item_vegan,item_glutenfree
-Vegetable Spring Rolls,"Cabbage, celery, carrots, green onions and Chinese noodles in a crispy wonton wrapper.",8,Vegetarian,TRUE,FALSE
-Chilli Gobi,Fresh cauliflower prepared with fresh herbs and chili peppers.,10,Vegetarian,TRUE,TRUE
-Chilli Tofu,Grilled tofu prepared with fresh herbs and chili peppers.,10,Vegetarian,TRUE,TRUE
-Gobi Manchurian,Crispy cauliflower in savory Manchurian sauce.,13,Vegetarian,TRUE,FALSE
-Sweet & Sour Vegetable,Fresh vegetables mixed with pineapples in a sweet and source sauce.,13,Vegetarian,TRUE,TRUE
-Manchurian Vegetable,Round vegetable dumpling balls in a savory Manchurian sauce.,13,Vegetarian,TRUE,FALSE
-Lollipop Chicken Wings,,9,Chicken,TRUE,FALSE
-Chilli Chicken,Tender pieces of chicken prepared with fresh herbs and chili peppers.,13,Chicken,FALSE,TRUE
-Hot Garlic Chicken,Sauteed chicken breast in a spicy garlic sauce.,13,Chicken,FALSE,FALSE
-Broccoli Chicken,Sliced chicken and broccoli in a tasty garlic sauce.,13,Chicken,FALSE,TRUE
-Sweet & Sour Chicken,Diced chicken breast lightly stir-fried with a tangy sweet and spice sauce,13,Chicken,FALSE,FALSE
-Manchurian Chicken,Tender pieces of chicken in a savory Manchurian sauce.,13,Chicken,FALSE,FALSE
-Basil Ginger Chicken,Stir-fried sliced chicken breast with basil and garlic sauce.,13,Chicken,FALSE,TRUE
-Hot Garlic Shrimp,Large gourmet shrimp in a spicy garlic sauce.,16,Shrimp,FALSE,FALSE
-Schezwan Shrimp,Gourmet shrimp sauteed with fresh vegetables in a savory schezwan sauce.,16,Shrimp,FALSE,FALSE
-White Basmati Rice,,4,Rice,TRUE,TRUE
-Brown Basmati Rice,,5,Rice,TRUE,TRUE
-Vegetable Fried Rice,"Basmati rice stir-fried and seasoned to perfection with fresh carrots, scallions and other vegetables.",12,Rice,TRUE,TRUE
-Chicken Fried Rice,Basmati rice stir-fried and seasoned to perfection with shredded piece of tender chicken.,13,Rice,FALSE,TRUE
-Shrimp Fried Rice,"Basmati rice stir-friend with gourmet baby shrimp, fresh carrots, scallions and other vegetables.",16,Rice,FALSE,TRUE
-Vegetable Hakka Noodles,Hakka style noodles with fresh vegetables.,12,Noodles,TRUE,FALSE
-Chicken Hakka Noodles,Hakka style noodles with tender pieces of chicken.,13,Noodles,FALSE,FALSE
-Chilli Garlic Noodles,Hakka style noodles with garlic and fresh chillis and spices.,13,Noodles,FALSE,FALSE
-Mango Lassi,Traditional cold and refreshing yogurt based drink made with mango pulp.,5,Beverages,FALSE,TRUE
-Poland Spring Water,,2,Beverages,TRUE,TRUE
-Soda,,2,Beverages,TRUE,TRUE
+item_category,item_name,item_description,item_price,
+Vornwech,Würzfleisch vom Schwein,mit Cheddar überbacken,7.90€
+Vornwech,Kürbiscremesuppe,mit gerösteten Kürbiskernen,7.60€
+Vornwech,Ukrainische Soljanka,Schmand | Baguette ,7.70€
+Vornwech,Zwiebel-Knoblauch Suppe,Kräutercroutons ,7.20€
+Ohne Fläsch,Penne mit Grillgemüse,In Bärlauch Pesto geschwenkt,18.70€
+Ohne Fläsch,Spinat-Käse Knödel,auf Tomatensuco mit Cheddar überbacken,18.50€
+Ohne Fläsch,Grünkohl-Hanf-Bällchen,auf Butterpilzrahm,18.70€
+Ohne Fläsch,Ofenkartoffel,Mit Kräuterschmand und Salatbouquet,12.70€
+Ohne Fläsch,Hirtenkäse,Peperoni | Tomaten | Bärlauch Pesto,11.90€
+Ohne Fläsch,Rote Bette Knödel,auf Steinpilzragout,18.90€
+Grünzeuch,Mühlensalat mit Hausdressing,Blattsalate | Tomaten | Gurken | Radieschen,6.50€
+Grünzeuch,Gurkensalat,angemacht mit Dill-Essig-Öl,6.50€
+Grünzeuch,Großer Mühlensalat,Hausdressing | Tomaten | Gurken | Radieschen | Paprika | Ei,14.20€
+Aus´m Wasser,Forelle „Müllerin“ (entgrätet),Petersilienkartoffeln | Kräuterbutter | Salatbouquet,19.80€
+Aus´m Wasser,Rauchmatjesfilet,Bratkartoffeln | Hausfrauensauce | Salatbouquet,19.70€
+Fläschiges,Schweinerückensteak „Au Four“,Würzfleisch | Käse überbacken | Mühlendipper | geräucherte Knoblauchmayonnaise,20.90€
+Fläschiges,Penne mit Hähnchen, in Tomaten-Paprika-Bacon Soße,19.80€
+Fläschiges,Ochsen Burger (200gr.),Laugenbun | Tomate | Gewürzgurke | rote Zwiebel Süßkartoffelpommes | geräucherte Knoblauchmayonnaise,19.90€
+Fläschiges,Rumpsteak (Irland | 300gr.),Mühlendipper | geräucherte Knoblauchmayonnaise | Kräuterbutter | kleiner Mühlensalat,29.90€
+Fläschiges,BBQ-Rinder Short Rips,Mühlendipper | Coleslaw | Dips,31.30€
+Fläschiges,Rostbrätel,Bratkartoffeln | Schmorzwiebeln | Senf | Salatbouquet,17.90€
+Aus dem Ofenrohr,Rinderroulade,Thüringer Kloß | Rotkohl,20.90€
+Aus dem Ofenrohr,Geschmortes Irisches Ochsenbäckchen,Thüringer Kloß | Rotkohl,22.90€
+Aus dem Ofenrohr,Halbe Ente (entbeint),Thüringer Kloß | Rotkohl,21.90€
+Schnitzel geht immer,Schweinerückenschnitzel,Mühlendipper | geräucherte Knoblauchmayonnaise | Gurkensalat,18.90€
+Schnitzel geht immer,Schweinerückenschnitzel mit 2 Setzeiern,Mühlendipper | geräucherte Knoblauchmayonnaise | Gurkensalat,20.90€
+Schnitzel geht immer,Schweinerückenschnitzel mit Rahmchampignons,Kroketten,20.90€
+Schnitzel geht immer,Schweinerückenschnitzel Würzfleisch,Mühlendipper | geräucherte Knoblauchmayonnaise,22.90€
+Schnitzel geht immer,Schweinerückenschnitzel „Stinkemüller“,überbacken mit Bacon & Knoblauch | Bratkartoffeln,23.90€
+Schnitzel geht immer,Schweinerückenschnitzel „Bergsteiger“,überbacken mit geschmorten Zwiebel & Speck | süßer Senf | Bergkäse Bratkartoffeln,24.90€
+Für unsere kleinen Gäste,Schnitzel,Mühlendipper | Ketchup,7.50€
+Für unsere kleinen Gäste,Chicken Nuggets,Mühlendipper | Ketchup,6.90€
+Für unsere kleinen Gäste,1 Kloß mit Soße,,6.50€
+Für unsere kleinen Gäste,Nudel mit Tomatensoße,,6.50€
+Für unsere kleinen Gäste,3 Kartoffelpuffer,Apfelmuss,5.90€
+Süßes Zeuch,Warmer Schokokuchen,Mango-Apfel-Chutney | Sauerrahmeis,7.50€
+Süßes Zeuch,Gebackene Siegelbacher „Klossknubel“,Vanillesoße | Maroneneis,7.90€
+Süßes Zeuch,Apfelstrudel mit Vanilleeis,,7.90€

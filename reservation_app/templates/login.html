@@ -5,8 +5,8 @@
 
 {% block content %}
 <style>
-  .register{color:white;bottom: 20vh;}
-  .login_user{color:red}
+  .register{color:var(--button_text);bottom: 20vh;}
+  .login_user{color:var(--active_button)}
   .form-label{color:black;
              font-size: 5vh;
             position: fixed;}
@@ -32,7 +32,7 @@
         width:30vw;
         height:10vh;
         border: white;
-        color: white;
+        color:var(--button_text);
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -44,15 +44,15 @@
       
 </style>
 <a href="{% url 'register_user' %}">
-  <button class="base_buttons register">New User</button>
+  <button class="standard_button register">New User</button>
 </a>
 <form method="POST" action="{% url 'login_user'%}">
   {% csrf_token %}
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label form-label1">Username</label>
-    <input type="text" class="tobook username" name="username" aria-describedby="emailHelp">
+    <input type="text" class="standard_button username" name="username" aria-describedby="emailHelp">
     <label for="exampleInputPassword1" class="form-label form-label2">Password</label>
-    <input type="password" class="tobook username password" name="password">
+    <input type="password" class="standard_button username password" name="password">
   <button type="submit" class="tobook1">Submit</button>
 </form>
     
@@ -61,4 +61,45 @@
   {{ message }}
   {% endfor %}
 {% endif %}
+
+{% load static %}
+      <a href="{% url 'home' %}">
+        <button class="tabbar home">
+            <img src="{% static 'icons/home.png' %}">
+            <br>
+            Start
+        </button>
+    </a>
+    <a href="{% url 'menu' %}">
+        <button class="tabbar menu">
+            <img src="{% static 'icons/menu.png' %}" >
+            <br>
+            Menu
+        </button>
+    </a>
+    <a href="{% url 'user_orders' %}">
+        <button class="tabbar mybook">
+            <img src="{% static 'icons/tables.png' %}">
+            <br>
+            Tische
+        </button>
+    </a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'account' %}">
+        <button class="tabbar login_user">
+            <img src="{% static 'icons/account.png' %}">
+            <br>
+            Profil
+        </button>
+    </a>
+    {% else %} 
+    <a href="{% url 'login_user' %}">
+        <button class="tabbar login_user">
+            <img src="{% static 'icons/login_active.png' %}">
+            <br>
+            Login
+        </button>
+    </a>
+    
+    {% endif %}
 {% endblock %} 
