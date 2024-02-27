@@ -1,0 +1,60 @@
+.menu-body {
+  margin: 0 auto;
+  display: block;
+  color: black;
+  max-width: 1000px;
+}
+
+.menu-section {
+  margin-bottom: 2 vh;
+}
+
+.menu-section-title {
+  font-family: 'Copperplate', fantasy;
+  font-size: 5vh;
+  display: block;
+  font-weight:normal;
+  text-align: Center;
+}
+
+.menu-item {
+  margin: 1vh 0;
+  font-size: 3vh;
+}
+/* .menu-title {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 90vh;
+  width: 110vw;
+  height: 10vh;
+  left:-5vw;
+  text-align: center;
+  text-decoration: none;
+  border:none;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Copperplate', fantasy;
+  font-size: 5vh;
+  color:var(--tabbar_text);
+  background-color: var(--tabbar_background);
+} */
+.menu-item-name{
+  font-family: 'Copperplate', fantasy;
+  font-weight: bold;
+  border-bottom: .4vh dotted black;
+}
+
+.menu-item-description {
+  font-family: 'Copperplate', fantasy;
+  font-style: italic;
+  font-size: 2vh;
+}
+
+.menu-item-price{
+  float: right;
+  font-weight: bold;
+  font-family: 'Copperplate', fantasy;
+  margin-top: -3.5vh;
+}

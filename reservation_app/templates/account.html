@@ -5,7 +5,8 @@
 {% block content %}
 {% load static %}
 <style>
-.menu{color:red}
+.login_user{color:var(--active_button)}
+.logout_user{color:var(--active_button)}
 </style>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
@@ -202,6 +203,37 @@
 
     <button class="tobook" id="requestPermissionButton">Request Notification Permission</button>
   
+    {% load static %}
+<a href="{% url 'home' %}">
+  <button class="tabbar home">
+      <img src="{% static 'icons/home.png' %}">
+      <br>
+      Start
+  </button>
+</a>
+<a href="{% url 'menu' %}">
+  <button class="tabbar menu">
+      <img src="{% static 'icons/menu.png' %}" >
+      <br>
+      Menu
+  </button>
+</a>
+<a href="{% url 'user_orders' %}">
+  <button class="tabbar mybook">
+      <img src="{% static 'icons/tables.png' %}">
+      <br>
+      Tische
+  </button>
+</a>
+<a href="{% url 'account' %}">
+  <button class="tabbar login_user">
+      <img src="{% static 'icons/account_active.png' %}">
+      <br>
+      Profil
+  </button>
+</a>
+
+
   {% endblock %}
 
 

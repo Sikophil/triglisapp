@@ -5,7 +5,6 @@
     
 <head>
 
-    <title>{% block title %}Home{% endblock %}</title>
     
     {% load static %}
     <link rel="apple-touch-icon" href="/static/icons/icon.png">
@@ -15,64 +14,66 @@
             font-family: 'Dreaming Outloud Pro';
             src: url("{% static 'fonts/FontsFree-Net-Dreaming.ttf' %}") format('truetype');
         }
-
     :root {
-            --orange:#ff6b01;
-            --yellow:#ff9900;
-            --red:#ce2200;
-            --button:black;
-            --text:white;
+            --tabbar_background:black;
+            --tabbar_text:rgb(191,91,124);
+            --button_background:black;
+            --button_text:rgb(191,91,124);
+            --active_button:rgb(183, 26, 78);
+            /* --red:#a43501; */
+            /* --lightblue:#0677A1; */
+            /* --lightblue:rgb(104,207,249); */
+            /* --darkblue:#2D4159; */
+            /* --background:#59253a; */
+
         }
     body {  
-        max-width: 200px;
-        /* background: radial-gradient(circle, #6169ff ,#04ffff); */
-        /* background: linear-gradient(to right, #ff7e5f, #feb47b); */
-        background: rgb(255, 215, 141);
-        
+        height: 100vh;
+        background: linear-gradient(0deg, rgb(121, 64, 98) 0%,rgb(133, 75, 106) 100%);
         font-family: "Comic Sans MS", "Comic Sans", cursive;
         }
         
-    .base_buttons {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    bottom: 0;
-    width: 25vw;
-    height: 8vh;
-    padding:2vh 2vw;
-    color:var(--text);
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* font-family: 'Dreaming Outloud Pro'; */
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 3vw;
-    cursor: pointer;
-    background-color: var(--button);
-}
-    .tobook {
+    
+    .standard_button {
         position: fixed;
         bottom: 70vh;
         left:10vw;
         width:80vw;
         height:10vh;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
-        /* border: 10px solid var(--red); */
-        color:var(--text);
+        color:var(--button_text);
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 5vw;
-        cursor: pointer;
         border-radius: 2vw;
-        background-color: var(--button);
-        }
+        border:none;
 
-        button img {
-        
-            margin-bottom: -4vh; 
+        font-family: 'Copperplate', fantasy;
+        font-size: 5vh;
+        cursor: pointer;
+        background-color:var(--button_background) ;
+        }
+        .tabbar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+        width: 25vw;
+        height: 8vh;
+        text-align: center;
+        text-decoration: none;
+        border:none;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'Copperplate', fantasy;
+        font-size: 3vh;
+        color:var(--tabbar_text);
+        background-color: var(--tabbar_background);
+}
+    button img {
+            height: 4.5vh;
+            width: 5vh;
+            margin-bottom: -3vh; 
         }
     .home{ left: 0}
     .menu{ left: 25vw}
@@ -90,46 +91,7 @@
     </div>
 
     
-    <a href="{% url 'home' %}">
-        <button class="base_buttons home">
-            <img src="{% static 'icons/home_out.png' %}" width=65vh height=65vh>
-            <br>
-            Startseite
-
-        </button>
-    </a>
-    <a href="{% url 'menu' %}">
-        <button class="base_buttons menu">
-            <img src="{% static 'icons/menu.png' %}" width=65vh height=65vh>
-            <br>
-            Menu
-        </button>
-    </a>
-    <a href="{% url 'user_orders' %}">
-        <button class="base_buttons mybook">
-            <img src="{% static 'icons/notebook.png' %}" width=65vh height=65vh>
-            <br>
-            Reservirungen
-        </button>
-    </a>
-    {% if user.is_authenticated %}
-    <a href="{% url 'account' %}">
-        <button class="base_buttons login_user">
-            <img src="{% static 'icons/account.png' %}" width=65vh height=65vh>
-            <br>
-            Account
-        </button>
-    </a>
-    {% else %} 
-    <a href="{% url 'login_user' %}">
-        <button class="base_buttons login_user">
-            <img src="{% static 'icons/login.png' %}" width=65vh height=65vh>
-            <br>
-            Login
-        </button>
-    </a>
     
-    {% endif %}
      
 
    
