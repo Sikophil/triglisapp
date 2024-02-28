@@ -1,7 +1,7 @@
 .menu-body {
   margin: 0 auto;
   display: block;
-  color: black;
+  color: var(--normal_text);
   max-width: 1000px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .menu-item-description {
-  border-top: .4vh dotted black;
+  border-top: .4vh dotted var(--normal_text);
   font-family: 'Copperplate', fantasy;
   font-style: italic;
   font-size: 2vh;
