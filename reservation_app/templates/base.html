@@ -116,9 +116,8 @@ body {
   max-width:10in;
   margin-top: -3vh;
   background: black;
-  /* padding: 30px; */
   border-radius:var(--border-radius);
-  box-shadow: 0px 2vw 2vh rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
 }
 .wrapper .title-text {
   display: flex;
@@ -141,7 +140,7 @@ body {
   overflow: hidden;
   margin: 2vh auto;
   justify-content: space-between;
-  border: 1px solid var(--orange);
+  border: .1vh solid var(--orange);
   border-radius: var(--border-radius);
 }
 .slide-controls .slide {
@@ -212,10 +211,10 @@ input[type="radio"] {
   height: 100%;
   width: 100%;
   outline: none;
-  padding-left: 15px;
+  padding-left: 2vw;
   border-radius: var(--border-radius);
-  border: 1px solid var(--orange);
-  border-bottom-width: .2vh;
+  border: .1vh solid var(--orange);
+  border-bottom-width: .3vh;
   background-color: black;
   font-size: 3vh;
   color:var(--orange);
@@ -224,7 +223,6 @@ input[type="radio"] {
 .form-inner form .field input:focus {
   border-color:var(--red);
   color:var(--red);
-  /* box-shadow: inset 0 0 3px #fb6aae; */
 }
 .form-inner form .field input::placeholder {
   color: #999;
@@ -234,11 +232,11 @@ form .field input:focus::placeholder {
   color:var(--red);
 }
 .form-inner form .pass-link {
-  margin-top: 5px;
+  margin-top: .5vh;
 }
 .form-inner form .signup-link {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 2vh;
   color:var(--orange);
 }
 .form-inner form .pass-link a,
@@ -251,7 +249,7 @@ form .field input:focus::placeholder {
   text-decoration: underline;
 }
 form .btn {
-  height: 50px;
+  height: 8vh;
   width: 100%;
   border-radius: var(--border-radius);
   position: relative;
