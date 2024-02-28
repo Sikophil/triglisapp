@@ -11,7 +11,7 @@
 
 .menu-section-title {
   font-family: 'Copperplate', fantasy;
-  font-size: 5vh;
+  font-size: 40px;
   display: block;
   font-weight:normal;
   text-align: Center;
@@ -51,7 +51,7 @@
   border-top: .4vh dotted var(--normal_text);
   font-family: 'Copperplate', fantasy;
   font-style: italic;
-  font-size: 2vh;
+  font-size: 15px;
   padding-top: 1vh;
   margin-bottom: 2vh;
   margin-left:2vw;

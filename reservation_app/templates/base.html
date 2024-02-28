@@ -22,6 +22,7 @@
             --button_text:var(--orange);
             --normal_text:var(--red);
             --active_button:var(--red);
+            --border-radius:15px;
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -38,13 +39,24 @@
            /* background: linear-gradient(to bottom,rgb(240, 127, 187) 0%,rgb(133, 75, 106) 100%); */
                 /* rgb(133, 75, 106) */
                 /* Pink: rgb(232, 53, 149) */
-    body {  
-        height: 100vh;
-     
-        background:var(--orange);
+                * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Copperplate', fantasy;
+  font-size: 25px;
+  /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
+}
+                html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background:var(--orange);
+ 
+}
 
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
-        }
      
         
     
@@ -58,14 +70,12 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        border-radius: 2vw;
+        border-radius: var(--border-radius);
         border:none;
-
-        font-family: 'Copperplate', fantasy;
-        font-size: 5vh;
         cursor: pointer;
         background-color:var(--button_background) ;
         }
+    
         .tabbar {
         display: flex;
         flex-direction: column;
@@ -80,8 +90,7 @@
         align-items: center;
         justify-content: center;
 
-        font-family: 'Copperplate', fantasy;
-        font-size: 2vh;
+        font-size: 16px;
         color:var(--tabbar_text);
         background-color: var(--tabbar_background);
 }
@@ -95,7 +104,6 @@
     .menu{ left: 24vw}
     .mybook{ left: 49vw}
     .login_user{ left: 74vw}
-    .logout_user{ left: 74vw}
 
 
     </style>

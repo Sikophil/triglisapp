@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from accounts.models import customuser
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .forms import SignUpForm
 from django import forms
 from .models import Book
@@ -69,6 +70,7 @@ def login_user(request):
         
         
     else:
+        
         pass
 
     
@@ -76,45 +78,85 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('home')
+    return redirect('login_user')
 
+
+# def register_user(request):
+#     # form = SignUpForm()
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+
+#             # Authenticate the new user
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password1']
+#             authenticated_user = authenticate(username=username, password=password)
+
+#             # # Get the superuser
+#             # superuser = customuser.objects.get(username='safarimac')
+#             # super_fcm = superuser.fcm_token
+#             # resgistration  = [super_fcm]
+#             # send_notification(resgistration , 'New User' , 'New User')
+
+#             superusers = customuser.objects.filter(is_superuser=True)
+#             registration_tokens = [superuser.fcm_token for superuser in superusers]
+#             send_notification(registration_tokens, 'New User', 'New User')
+
+#             # Create a Notification object for the superuser
+#             # Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
+
+#             messages.success(request, "New User!")
+#             return redirect('home')
+#         else:
+#             for field, errors in form.errors.items():
+#                 for error in errors:
+#                     messages.error(request, f"{field}: {error}")
+
+#             messages.error(request, "Registration failed. Please correct the errors.")
+#             return redirect('register_user')
+#     else:
+#         return render(request,'register_user.html',{'form':form})
+
+
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 def register_user(request):
-    form = SignUpForm()
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        username = request.POST.get('username')
+        last_name = request.POST.get('last_name')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        phone = request.POST.get('phone')
 
-            # Authenticate the new user
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            authenticated_user = authenticate(username=username, password=password)
-
-            # # Get the superuser
-            # superuser = customuser.objects.get(username='safarimac')
-            # super_fcm = superuser.fcm_token
-            # resgistration  = [super_fcm]
-            # send_notification(resgistration , 'New User' , 'New User')
-
-            superusers = customuser.objects.filter(is_superuser=True)
-            registration_tokens = [superuser.fcm_token for superuser in superusers]
-            send_notification(registration_tokens, 'New User', 'New User')
-
-            # Create a Notification object for the superuser
-            # Notification.objects.create(user=superuser, message=f"New user: {authenticated_user.username}")
-
-            messages.success(request, "New User!")
-            return redirect('home')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
-
-            messages.error(request, "Registration failed. Please correct the errors.")
+        # Perform basic validation
+        if not username or not password1 or password1 != password2:
+            messages.error(request, "Registration failed. Please provide valid data.")
             return redirect('register_user')
+        existing_users = customuser.objects.filter(username=username)
+
+        if existing_users.exists():
+            messages.error(request, "Registration failed. Please provide valid data.")
+            return redirect('register_user')
+
+          
+
+        # Create user without using SignUpForm
+        user = user = customuser.objects.create_user(username=username, password=password1, phone=phone,last_name=last_name)
+
+        # Authenticate the new user
+        authenticated_user = authenticate(username=username, password=password1)
+
+        # Notify superusers
+        superusers = customuser.objects.filter(is_superuser=True)
+        registration_tokens = [superuser.fcm_token for superuser in superusers]
+        send_notification(registration_tokens, 'New User', 'New User')
+
+        messages.success(request, "New User!")
+        return redirect('home')
     else:
-        return render(request,'register_user.html',{'form':form})
+        return render(request, 'register_user.html', {})
 
 # views.py
 
@@ -134,8 +176,7 @@ def user_orders(request):
             user_orders = Book.objects.filter(user=request.user)
             return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
-        # Handle the case when the user is not authenticated, e.g., redirect to login page
-        return render(request, 'login.html')
+        return render(request, 'user_orders.html', {'user_orders': 0})
 
 
 def create_book(request):
