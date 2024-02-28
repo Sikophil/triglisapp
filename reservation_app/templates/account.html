@@ -3,6 +3,12 @@
 {% block title %}Your Page Title{% endblock %}
 
 {% block content %}
+<div class="button-container">
+<button class="std_button" id="requestPermissionButton">Request Notification Permission</button>
+<a href="{% url 'logout_user' %}">
+<button class="std_button" style="color: var(--red);">Logout</button>
+    </a> 
+</div>
 {% load static %}
 <style>
 .login_user{color:var(--active_button)}
@@ -201,10 +207,8 @@
         });
     </script>
 
-    <button class="tobook" id="requestPermissionButton">Request Notification Permission</button>
-    <a href="{% url 'logout_user' %}">
-    <button >Logout</button>
-        </a>
+   
+
     {% load static %}
 <a href="{% url 'home' %}">
   <button class="tabbar home">

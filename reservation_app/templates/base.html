@@ -23,6 +23,7 @@
             --normal_text:var(--red);
             --active_button:var(--red);
             --border-radius:2vh;
+            --max_width:15in;
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -50,6 +51,7 @@
                 html,
 body {
   display: grid;
+  margin: 0;
   height: 90vh;
   width: 100%;
   place-items: center;
@@ -61,11 +63,12 @@ body {
         
     
     .standard_button {
-        position: fixed;
-        bottom: 70vh;
-        left:10vw;
-        width:80vw;
+        /* position: fixed; */
+        /* bottom: 70vh; */
+        /* left:10vw; */
+        /* width:80vw;
         height:10vh;
+        max-width: var(--max_width);
         color:var(--button_text);
         text-align: center;
         text-decoration: none;
@@ -73,7 +76,20 @@ body {
         border-radius: var(--border-radius);
         border:none;
         cursor: pointer;
-        background-color:var(--button_background) ;
+        background-color:var(--button_background) ; */
+        /* overflow: hidden; */
+        width: 93vw;
+
+        height:10vh;
+        max-width:var(--max_width);
+        /*margin-bottom: 1vh;
+        background: black; */
+        margin: 0 auto;
+        color:var(--orange);
+        border-radius:var(--border-radius);
+        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+        position: relative;
+        display: flex;
         }
     
         .tabbar {
@@ -109,11 +125,77 @@ body {
   background:var(--red);
   color: var(--red);
 }
+.tables-container {
+            height: 80vh;
+            margin-top: -6vh;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            /* margin-top: 20px; */
+        }
+        .table_button
+        {
+            /* margin-bottom: 5vh;  */
+            margin-top: 1vh; 
+            width: 93vw;
+        padding-top: 1vh;
+        text-align: center;
+        /* padding-left:1vw; */
+        height:18vh;
+        background: black; 
+        color:var(--orange);
+        text-align: center;
+        border-radius:var(--border-radius);
+        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+        }
+.button-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-top: 0;
+        }
+
+        /* Apply styling to the buttons */
+        .std_button {
+            margin-bottom: 10px; /* Add some spacing between buttons */
+            width: 93vw;
+            text-align: center;
+        height:10vh;
+        /* max-width:var(--max_width); */
+        /*margin-bottom: 1vh;*/
+        background: black; 
+        /* margin: 0 auto; */
+        color:var(--orange);
+        border-radius:var(--border-radius);
+        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+        /* position: relative; */
+        /* display: flex; */
+        }
+        .new_book_button {
+            margin-bottom: 10px; /* Add some spacing between buttons */
+            width: 100vw;
+            text-align: center;
+        height:8vh;
+        /* max-width:var(--max_width); */
+        /*margin-bottom: 1vh;*/
+        background: black; 
+        /* margin: 0 auto; */
+        /* padding-left: 2vw; */
+        color:var(--orange);
+        border-radius:var(--border-radius);
+        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+        /* position: relative; */
+        /* display: flex; */
+        }
+        .new_book_button label {
+        padding-left: 2vw;
+        /* Add other desired styles here */
+    }
 .wrapper {
   overflow: hidden;
   width: 93vw;
   /* height:80vh; */
-  max-width:10in;
+  max-width:var(--max_width);
   margin-top: -3vh;
   background: black;
   border-radius:var(--border-radius);

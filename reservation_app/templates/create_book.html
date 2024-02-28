@@ -37,10 +37,11 @@
   </style>
   <form method="post" action="{% url 'create_book' %}">
     {% csrf_token %}
+       <div class="button-container">
+
     {{ form.as_p }}
-    <label class="text form_1">Time</label>
-    <label class="text form_3">Date</label>
-    <label class="text form_5">Number of guests</label>
-    <button class="form form_7">Create Reservation</button>
+  <br>
+    <button class="std_button" style="color:var(--red)" >Create Reservation</button>
+     </div>
   </form>
 {% endblock %}

@@ -38,8 +38,8 @@ def confirm(request):
     with transaction.atomic():
         for book in books:
         # Check if confirmation value needs to be changed
-            if book.confirmation != 'True':
-                book.confirmation = 'True'
+            if book.confirmation != 'Ja':
+                book.confirmation = 'Ja'
                 user =book.user
                 registration_tokens = [user.fcm_token]
                 send_notification(registration_tokens, 'Confirmed', 'Confirmed')
@@ -162,7 +162,7 @@ def register_user(request):
 
 def orders_admin(request):
     if request.user.is_superuser:
-        user_orders = Book.objects.filter(confirmation='False')
+        user_orders = Book.objects.filter(confirmation='Nein')
         return render(request, 'orders_admin.html', {'user_orders': user_orders})
     else:
         return redirect('home')

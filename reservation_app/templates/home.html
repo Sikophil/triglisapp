@@ -6,12 +6,16 @@
 {% block content %}
    
 {% if user.is_authenticated %}
-
-
+<style>
+   
+</style>
+<div class="button-container">
     <a href="{% url 'create_book' %}">
-        <button class="standard_button">Tisch reservieren</button>
-    </a>
+        <button class="std_button">Tisch reservieren</button>
+    </a>   
 
+    
+</div>
     {% endif %}
     <style>
 
