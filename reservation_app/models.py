@@ -8,7 +8,7 @@ class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     time = models.TimeField(default='12:30:00')
     date = models.DateField(default='2024-02-19')
-    guests = models.IntegerField(default=1)
+    guests = models.IntegerField(default= '',null=False)
     confirmation= models.CharField(default='Nein', max_length=20)
 
     def __str__(self):

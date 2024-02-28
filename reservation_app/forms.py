@@ -86,13 +86,17 @@ class BookForm(forms.ModelForm):
         fields = ['time', 'date','guests']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['time'].label = 'Zeit'
+        self.fields['time'].label = ''
         self.fields['time'].widget.attrs['class'] = "new_book_button"
+        self.fields['time'].widget.attrs['placeholder'] = 'Zeit'
 		
         self.fields['date'].widget.attrs['class'] = "new_book_button"
-        self.fields['date'].label = 'Datum'
+        self.fields['date'].widget.attrs['placeholder'] = 'Datum'
+        self.fields['date'].label = ''
+        
         self.fields['guests'].widget.attrs['class'] = "new_book_button"
-        self.fields['guests'].label = 'Anzahl der Gäste'
+        self.fields['guests'].widget.attrs['placeholder'] = 'Anzahl der Gäste'
+        self.fields['guests'].label = ''
 
 
 class NotificationForm(forms.Form):

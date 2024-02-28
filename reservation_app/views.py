@@ -176,30 +176,33 @@ def user_orders(request):
             user_orders = Book.objects.filter(user=request.user)
             return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
-        return render(request, 'user_orders.html', {'user_orders': 0})
+        return redirect('login_user')  
+        # return render(request, 'user_orders.html', {'user_orders': 0})
 
 
 def create_book(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        if form.is_valid():
-            new_book = form.save(commit=False)
-            new_book.user = request.user
-            new_book.save()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = BookForm(request.POST)
+            if form.is_valid():
+                new_book = form.save(commit=False)
+                new_book.user = request.user
+                new_book.save()
 
-            # superuser = customuser.objects.get(username='Sikophil')
-            # super_fcm = superuser.fcm_token
-            # resgistration  = [super_fcm]
-            # send_notification(resgistration , 'New Reservation' , 'New Reservation')
-            superusers = customuser.objects.filter(is_superuser=True)
-            registration_tokens = [superuser.fcm_token for superuser in superusers]
-            send_notification(registration_tokens, 'New Reservation', 'New Reservation')
+                # superuser = customuser.objects.get(username='Sikophil')
+                # super_fcm = superuser.fcm_token
+                # resgistration  = [super_fcm]
+                # send_notification(resgistration , 'New Reservation' , 'New Reservation')
+                superusers = customuser.objects.filter(is_superuser=True)
+                registration_tokens = [superuser.fcm_token for superuser in superusers]
+                send_notification(registration_tokens, 'New Reservation', 'New Reservation')
 
-            return redirect('home')  # Redirect to a page displaying a list of books
+                return redirect('home')  # Redirect to a page displaying a list of books
+        else:
+            form = BookForm()
+        return render(request, 'create_book.html', {'form': form})
     else:
-        form = BookForm()
-
-    return render(request, 'create_book.html', {'form': form})
+        return redirect('login_user')  
 
 from .models import Notification
 from .forms import NotificationForm
