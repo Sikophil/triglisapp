@@ -15,7 +15,7 @@ class Book(models.Model):
     phone     = models.CharField(max_length=30,blank=True,null=True)
 
     def __str__(self):
-        if self.name == '': 
+        if self.last_name == '': 
             return f" - {self.date} - {self.time} - {self.guests} - {self.confirmation}"
         else:
             return f"{self.last_name} - {self.date} - {self.time} - {self.guests} - {self.confirmation}"

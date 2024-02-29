@@ -220,6 +220,7 @@ def create_book(request):
             else:
                 guest_user_create_book(request)
                 last_name=request.POST.get('last_name')
+                request.user.name=last_name
                 book = Book.objects.create(last_name=last_name,phone=phone, date=date,time=time,guests=guests,user=request.user)
 
                 superusers = customuser.objects.filter(is_superuser=True)
