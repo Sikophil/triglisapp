@@ -422,14 +422,14 @@ form .btn input[type="submit"] {
     }
 </script>
 <script>
-  function changeColor2(event) {
+  function changeColor3(event) {
       // Get the selected color from the color picker
       const newColor = event.target.value;
 
       // Update the CSS variable with the new color
       const root = document.documentElement;
       root.style.setProperty('--tabbar_background', newColor);
-      root.style.setProperty('--button_background', newColor);
+      root.style.setProperty('--_background', newColor);
       // You can repeat the above line for other variables as needed
   }
 </script>
