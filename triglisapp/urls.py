@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',include('reservation_app.urls')),
+    path("convert/", include("guest_user.urls")),
 ]
 from django.conf import settings
 from django.conf.urls.static import static

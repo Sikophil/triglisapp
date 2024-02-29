@@ -14,6 +14,7 @@ from firebase_admin import credentials, messaging
 import os
 import requests
 import json
+from guest_user.decorators import allow_guest_user
 credentials_path = os.path.join(os.path.dirname(__file__), "credentials.json")
 
 
@@ -217,13 +218,13 @@ def create_book(request):
                 registration_tokens = [superuser.fcm_token for superuser in superusers]
                 send_notification(registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
             else:
-                print(request.user);
-                # last_name=request.POST.get('last_name')
-                # book = Book.objects.create(last_name=last_name,phone=phone, date=date,time=time,guests=guests)
+                guest_user_create_book(request)
+                last_name=request.POST.get('last_name')
+                book = Book.objects.create(last_name=last_name,phone=phone, date=date,time=time,guests=guests,user=request.user)
 
-                # superusers = customuser.objects.filter(is_superuser=True)
-                # registration_tokens = [superuser.fcm_token for superuser in superusers]
-                # send_notification(registration_tokens, 'Neue Reservirung', f"{book.last_name} - {book.date} - {book.time} - {book.guests} pax")
+                superusers = customuser.objects.filter(is_superuser=True)
+                registration_tokens = [superuser.fcm_token for superuser in superusers]
+                send_notification(registration_tokens, 'Neue Reservirung', f"{book.last_name} - {book.date} - {book.time} - {book.guests} pax")
 
 
 
@@ -232,6 +233,10 @@ def create_book(request):
     else:
         pass
     return render(request, 'create_book.html') 
+
+@allow_guest_user
+def guest_user_create_book(request):
+    print(request.user.username)
 
 from .models import Notification
 from .forms import NotificationForm

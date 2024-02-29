@@ -16,7 +16,7 @@ class Book(models.Model):
 
     def __str__(self):
         if self.name == '': 
-            return f"{self.user.last_name} - {self.date} - {self.time} - {self.guests} - {self.confirmation}"
+            return f" - {self.date} - {self.time} - {self.guests} - {self.confirmation}"
         else:
             return f"{self.last_name} - {self.date} - {self.time} - {self.guests} - {self.confirmation}"
 
