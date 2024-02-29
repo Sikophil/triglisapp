@@ -271,16 +271,14 @@ def send_notification(registration_ids , message_title , message_desc):
     headers = {
     "Content-Type":"application/json",
     "Authorization": 'key='+fcm_api}
-
+    icon_url = os.path.join(settings.STATIC_URL,'icons/icon.png' )
     payload = {
         "registration_ids" :registration_ids,
         "priority" : "high",
         "notification" : {
             "body" : message_desc,
             "title" : message_title,
-            "image" : "https://i.ytimg.com/vi/m5WUPHRgdOA/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDwz-yjKEdwxvKjwMANGk5BedCOXQ",
-            "icon": "https://yt3.ggpht.com/ytc/AKedOLSMvoy4DeAVkMSAuiuaBdIGKC7a5Ib75bKzKO3jHg=s900-c-k-c0x00ffffff-no-rj",
-            
+            "icon": icon_url
         }
     }
 
