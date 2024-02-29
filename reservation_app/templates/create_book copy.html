@@ -1,0 +1,82 @@
+<!-- create_book.html -->
+{% extends 'base.html' %}  <!-- Extend a base template if you have one -->
+
+{% block content %}
+<style>
+
+  .form{  position: fixed;
+          width:40vw;
+          left: 30vw;
+          height:8vh;
+          border: white;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 5vw;
+          cursor: pointer;
+          background-color: #000000;
+          border-radius: 2vw;}
+    .text{  position: fixed;
+          width:40vw;
+          left: 30vw;
+          height:8vh;
+          text-align: center;
+          text-decoration: none;
+          font-size: 5vw;
+          cursor: pointer;
+          border-radius: 2vw;}
+  
+  .home{color:var(--active_button)}
+  </style>
+  
+  <form method="post" action="{% url 'create_book' %}">
+    {% csrf_token %}
+       <div class="button-container">
+
+    {{ form.as_p }}
+  <br>
+    <button class="std_button" style="color:var(--red)" >Create Reservation</button>
+     </div>
+  </form>
+  {% load static %}
+      <a href="{% url 'home' %}">
+        <button class="tabbar home">
+            <img src="{% static 'icons/home_active.png' %}">
+            <br>
+            Start
+        </button>
+    </a>
+    <a href="{% url 'menu' %}">
+        <button class="tabbar menu">
+            <img src="{% static 'icons/menu.png' %}" >
+            <br>
+            Menu
+        </button>
+    </a>
+    <a href="{% url 'user_orders' %}">
+        <button class="tabbar mybook">
+            <img src="{% static 'icons/tables.png' %}">
+            <br>
+            Tische
+        </button>
+    </a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'account' %}">
+        <button class="tabbar login_user">
+            <img src="{% static 'icons/account.png' %}">
+            <br>
+            Profil
+        </button>
+    </a>
+    {% else %} 
+    <a href="{% url 'login_user' %}">
+        <button class="tabbar login_user">
+            <img src="{% static 'icons/login.png' %}">
+            <br>
+            Login
+        </button>
+    </a>
+    
+    {% endif %}
+{% endblock %}

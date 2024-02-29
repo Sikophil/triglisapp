@@ -4,48 +4,10 @@
 {% block content %}
 <style>
 
-  .form{  position: fixed;
-          width:40vw;
-          left: 30vw;
-          height:8vh;
-          border: white;
-          color: white;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 5vw;
-          cursor: pointer;
-          background-color: #000000;
-          border-radius: 2vw;}
-    .text{  position: fixed;
-          width:40vw;
-          left: 30vw;
-          height:8vh;
-          text-align: center;
-          text-decoration: none;
-          font-size: 5vw;
-          cursor: pointer;
-          border-radius: 2vw;}
   
-  .form_1{bottom: 80vh;}
-  .form_2{bottom: 75vh;}
-  .form_3{bottom: 60vh;}
-  .form_4{bottom: 55vh;}
-  .form_5{bottom: 40vh;}
-  .form_6{bottom: 35vh;}
-  .form_7{bottom: 20vh;}
   .home{color:var(--active_button)}
   </style>
-  
-  <form method="post" action="{% url 'create_book' %}">
-    {% csrf_token %}
-       <div class="button-container">
 
-    {{ form.as_p }}
-  <br>
-    <button class="std_button" style="color:var(--red)" >Create Reservation</button>
-     </div>
-  </form>
   {% load static %}
       <a href="{% url 'home' %}">
         <button class="tabbar home">
@@ -86,4 +48,83 @@
     </a>
     
     {% endif %}
+ 
+
+<div class="wrapper">
+  <div class="title-text">
+    <div class="title login">Login Form</div>
+    <div class="title signup">Signup Form</div>
+  </div>
+  <div class="form-container">
+    <div class="slide-controls">
+      <input type="radio" name="slide" id="login" checked>
+      <input type="radio" name="slide" id="signup">
+      <label for="login" class="slide login">Login</label>
+      <label for="signup" class="slide signup">Signup</label>
+      <div class="slider-tab"></div>
+    </div>
+    <div class="form-inner">
+      <form method="POST" action="{% url 'create_book'%}" class="login">
+        {% csrf_token %}
+        <div class="field">
+          <input type="date" name="date" placeholder="Datum">
+        </div>
+        <div class="field">
+          <input type="time" name="time" placeholder="Zeit">
+        </div>
+        <div class="field">
+          <input type="number" name="guests" placeholder="Anzahl der Gäste">
+        </div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Tisch reservieren">
+        </div>
+        <div class="signup-link">Not a member? <br><a href="#" style="color: var(--red);">Signup now</a></div>
+      </form>
+      <form method="POST" action="{% url 'register_user'%}" class="signup">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" name="username" placeholder="Username">
+        </div>
+        <div class="field">
+          <input type="text" name="last_name" placeholder="Nachname">
+        </div>
+        <div class="field">
+          <input type="text" name="phone" placeholder="Phone">
+        </div>
+        <div class="field">
+          <input type="password" name="password1" placeholder="Password">
+        </div>
+        <div class="field">
+          <input type="password" name="password2" placeholder="Confirm Password">
+        </div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Signup">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const loginText = document.querySelector(".title-text .login");
+const loginForm = document.querySelector("form.login");
+const loginBtn = document.querySelector("label.login");
+const signupBtn = document.querySelector("label.signup");
+const signupLink = document.querySelector("form .signup-link a");
+signupBtn.onclick = () => {
+  loginForm.style.marginLeft = "-50%";
+  loginText.style.marginLeft = "-50%";
+};
+loginBtn.onclick = () => {
+  loginForm.style.marginLeft = "0%";
+  loginText.style.marginLeft = "0%";
+};
+signupLink.onclick = () => {
+  signupBtn.click();
+  return false;
+};
+  </script>
 {% endblock %}

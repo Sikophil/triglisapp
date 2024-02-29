@@ -183,26 +183,41 @@ def user_orders(request):
 def create_book(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = BookForm(request.POST)
-            if form.is_valid():
-                new_book = form.save(commit=False)
-                new_book.user = request.user
-                new_book.save()
+            user = request.user
+            date = request.POST.get('date')
+            time = request.POST.get('time')
+            guests = request.POST.get('guests')
 
-                # superuser = customuser.objects.get(username='Sikophil')
-                # super_fcm = superuser.fcm_token
-                # resgistration  = [super_fcm]
-                # send_notification(resgistration , 'New Reservation' , 'New Reservation')
-                superusers = customuser.objects.filter(is_superuser=True)
-                registration_tokens = [superuser.fcm_token for superuser in superusers]
-                send_notification(registration_tokens, 'New Reservation', 'New Reservation')
+        # Perform basic validation
+            if not date or not time or not guests:
+                messages.error(request, "Registration failed. Please provide valid data.")
+                return redirect('register_user')
 
-                return redirect('home')  # Redirect to a page displaying a list of books
+            book = Book.objects.create(user=user, date=date,time=time,guests=guests)
+
+
+          
+
+        # Create user without using SignUpForm
+            
+            # form = BookForm(request.POST)
+            # if form.is_valid():
+            #     new_book = form.save(commit=False)
+            #     new_book.user = request.user
+            #     new_book.save()
+
+            #     # superuser = customuser.objects.get(username='Sikophil')
+            #     # super_fcm = superuser.fcm_token
+            #     # resgistration  = [super_fcm]
+            #     # send_notification(resgistration , 'New Reservation' , 'New Reservation')
+            superusers = customuser.objects.filter(is_superuser=True)
+            registration_tokens = [superuser.fcm_token for superuser in superusers]
+            send_notification(registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
+
+            return redirect('home')  # Redirect to a page displaying a list of books
         else:
             form = BookForm()
-        return render(request, 'create_book.html', {'form': form})
-    else:
-        return redirect('login_user')  
+        return render(request, 'create_book.html', {'form': form}) 
 
 from .models import Notification
 from .forms import NotificationForm
