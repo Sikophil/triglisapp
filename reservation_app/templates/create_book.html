@@ -52,7 +52,7 @@
     {% if user.is_authenticated %}
 <div class="wrapper">
   <div class="title-text">
-    <div class="title login" style="margin-bottom: 2vh;">Tischreservierung</div>
+    <div class="title login" style="font-size: 4vh;">Tischreservierung</div>
   </div>
     <div class="form-inner">
       <form method="POST" action="{% url 'create_book'%}" class="login">
@@ -97,7 +97,7 @@
     <div class="slide-controls">
       <input type="radio" name="slide" id="login" checked>
       <input type="radio" name="slide" id="signup">
-      <label for="login" class="slide login" >Mit meinem login</label>
+      <label for="login" class="slide login"  >Mit meinem login</label>
       <label for="signup" class="slide signup">Als neuer Gast</label>
       <div class="slider-tab"></div>
     </div>

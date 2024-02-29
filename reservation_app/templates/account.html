@@ -3,9 +3,14 @@
 {% block title %}Your Page Title{% endblock %}
 
 {% block content %}
-
+{% load guest_user %}
 <div class="button-container">
-<div  class="std_button" style="background-color: var(--orange);margin-bottom:-3vh;font-size:5vh;color:var(--red);box-shadow: 0 2vw 2vh rgba(0, 0, 0,0);">User: {{user.username}}</div>
+    {% if user|is_guest_user %}
+<div  class="std_button" style="background-color: var(--orange);margin-bottom:-3vh;font-size:5vh;color:var(--red);box-shadow: 0 2vw 2vh rgba(0, 0, 0,0); white-space: pre-wrap;overflow-wrap: break-word;">User: gast</div>
+{% else %}
+<div  class="std_button" style="background-color: var(--orange);margin-bottom:-3vh;font-size:5vh;color:var(--red);box-shadow: 0 2vw 2vh rgba(0, 0, 0,0); white-space: pre-wrap;overflow-wrap: break-word;">User: {{user.username}}</div>
+
+{% endif %}
 <button class="std_button" id="requestPermissionButton">Request Notification Permission</button>
 <a href="{% url 'logout_user' %}">
 <button class="std_button" style="color: var(--red);">Logout</button>
