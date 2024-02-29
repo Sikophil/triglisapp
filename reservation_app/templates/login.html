@@ -20,45 +20,7 @@
 <div class="tabbar_back">
 
 </div> -->
-<a href="{% url 'home' %}">
-  <button class="tabbar home">
-      <img src="{% static 'icons/home.png' %}">
-      <br>
-      Start
-  </button>
-</a>
-<a href="{% url 'menu' %}">
-  <button class="tabbar menu">
-      <img src="{% static 'icons/menu.png' %}" >
-      <br>
-      Menu
-  </button>
-</a>
-<a href="{% url 'user_orders' %}">
-  <button class="tabbar mybook">
-      <img src="{% static 'icons/tables.png' %}">
-      <br>
-      Tische
-  </button>
-</a>
-{% if user.is_authenticated %}
-<a href="{% url 'account' %}">
-  <button class="tabbar login_user">
-      <img src="{% static 'icons/account.png' %}">
-      <br>
-      Profil
-  </button>
-</a>
-{% else %} 
-<a href="{% url 'login_user' %}">
-  <button class="tabbar login_user">
-      <img src="{% static 'icons/login_active.png' %}">
-      <br>
-      Login
-  </button>
-</a>
 
-<!-- {% endif %} -->
 
 <div class="wrapper">
   <div class="title-text">
@@ -135,6 +97,45 @@ signupLink.onclick = () => {
   return false;
 };
   </script>
+  <a href="{% url 'home' %}">
+    <button class="tabbar home">
+        <img src="{% static 'icons/home.png' %}">
+        <br>
+        Start
+    </button>
+  </a>
+  <a href="{% url 'menu' %}">
+    <button class="tabbar menu">
+        <img src="{% static 'icons/menu.png' %}" >
+        <br>
+        Menu
+    </button>
+  </a>
+  <a href="{% url 'user_orders' %}">
+    <button class="tabbar mybook">
+        <img src="{% static 'icons/tables.png' %}">
+        <br>
+        Tische
+    </button>
+  </a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'account' %}">
+    <button class="tabbar login_user">
+        <img src="{% static 'icons/account.png' %}">
+        <br>
+        Profil
+    </button>
+  </a>
+  {% else %} 
+  <a href="{% url 'login_user' %}">
+    <button class="tabbar login_user">
+        <img src="{% static 'icons/login_active.png' %}">
+        <br>
+        Login
+    </button>
+  </a>
+  
+  {% endif %}
 
  <!-- <a href="{% url 'register_user' %}"> -->
   <!-- <button class="standard_button register">New User</button> -->
