@@ -11,7 +11,7 @@
 }
 
 .menu-section-title {
-  font-family: 'Copperplate', fantasy;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 5vh;
   display: block;
   font-weight:normal;
@@ -42,7 +42,7 @@
   background-color: var(--tabbar_background);
 } */
 .menu-item-name{
-  font-family: 'Copperplate', fantasy;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-weight: bold;
   font-size: 3vh;
   margin-left:2vw;
@@ -51,7 +51,7 @@
 
 .menu-item-description {
   border-top: .4vh dotted var(--normal_text);
-  font-family: 'Copperplate', fantasy;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-style: italic;
   font-size: 2.5vh;
   padding-top: 1vh;
@@ -64,7 +64,7 @@
 .menu-item-price{
   float: right;
   font-weight: bold;
-  font-family: 'Copperplate', fantasy;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 3vh;
   margin-top: -3.5vh;
   margin-left:2vw;
