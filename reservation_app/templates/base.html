@@ -15,18 +15,20 @@
             src: url("{% static 'fonts/FontsFree-Net-Dreaming.ttf' %}") format('truetype');
         }
     :root { 
-            /* --orange:rgb(251,166,19); */
+            /* --orange:rgb(251,166,19); yel style*/
             --orange:rgb(74,36,26);
             /* --red:rgb(199,5,5); */
-            --red:rgb(251,166,19);
+            --red:rgb(247,201,113);
+
             --tabbar_background:black;
-            /* --tabbar_text:var(--orange); */
+            /* --tabbar_text:var(--orange);yel style */
             --tabbar_text:var(--red);
             --button_background:black;
-            /* --button_text:var(--orange); */
+            /* --button_text:var(--orange);yel style */
             --button_text:var(--red);
             --normal_text:var(--red);
-            --active_button:var(--red);
+            /* --active_button:var(--red); yel style*/
+            --active_button:rgb(199,5,5); 
             --border-radius:2vh;
             --max_width:10in;
              /* rgb(240, 127, 187); */
@@ -102,7 +104,6 @@ body {
         flex-direction: column;
         position: fixed;
         bottom: 0;
-       
         width: 27vw;
         height: 10vh;
         text-align: center;
@@ -110,16 +111,15 @@ body {
         border:none;
         align-items: center;
         justify-content: center;
-
         font-size: 2vh;
         color:var(--tabbar_text);
         background-color: var(--tabbar_background);
 }
     button img {
-        margin-top: -4vh;
+        margin-top: -3vh;
             height: 3vh;
             width: 3vh;
-            margin-bottom: -2vh; 
+            margin-bottom: -3vh; 
         }
     .home{ left: -1vw}
     .menu{ left: 24vw}
@@ -143,7 +143,7 @@ body {
             /* margin-bottom: 5vh;  */
             margin-top: 1vh; 
             width: 93vw;
-        padding-top: 1vh;
+        padding-top: 3vh;
         max-width:var(--max_width);
         text-align: center;
         /* padding-left:1vw; */
@@ -173,7 +173,7 @@ body {
         /*margin-bottom: 1vh;*/
         background: var(--button_background); 
         /* margin: 0 auto; */
-        color:var(--orange);
+        color:var(--button_text);
         border-radius:var(--border-radius);
         box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
         border: none;
@@ -214,7 +214,8 @@ body {
 }
 .wrapper .title-text {
   display: flex;
-  color:var(--orange);
+  /* color:var(--orange);yel style */
+  color:var(--red);
   width: 200%;
 }
 .wrapper .title {
@@ -255,7 +256,9 @@ body {
 .slide-controls .slide {
   height: 100%;
   width: 100%;
-  color: var(--red);
+  color: var(--orange);
+    /* yel red */
+
   font-weight: 500;
   text-align: center;
   margin-top: 2vh;
@@ -286,15 +289,18 @@ input[type="radio"] {
   left: 50%;
 }
 #signup:checked ~ label.signup {
-  color:  var(--red);
+  color:  var(--orange);
+  /* yel red */
   cursor: default;
   user-select: none;
 }
 #signup:checked ~ label.login {
-  color: var(--orange);
+  /* color: var(--orange);yel */
+  color:var(--red)
 }
 #login:checked ~ label.signup {
-  color: var(--orange);
+  /* color: var(--orange);yel */
+  color:var(--red)
 }
 #login:checked ~ label.login {
   cursor: default;
@@ -334,7 +340,8 @@ input[type="radio"] {
   border-bottom-width: .3vh;
   background-color:var(--button_background);
   font-size: 3vh;
-  color:var(--orange);
+  /* color:var(--orange);yel */
+  color: #999;
   transition: all 0.3s ease;
   justify-content: center;
   align-items: center;
@@ -357,7 +364,8 @@ form .field input:focus::placeholder {
 .form-inner form .signup-link {
   text-align: center;
   margin-top: 2vh;
-  color:var(--orange);
+  /* color:var(--orange);yel */
+  color:var(--red);
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a {
@@ -394,7 +402,8 @@ form .btn input[type="submit"] {
   position: relative;
   background: none;
   border: none;
-  color: var(--red);
+  /* color: var(--red);yel */
+  color:var(--orange);
   padding-left: 0;
   border-radius: var(--border-radius);
   font-size: 4vh;
