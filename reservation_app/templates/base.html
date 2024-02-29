@@ -220,10 +220,26 @@ body {
   text-align: center;
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+.wrapper .error_message-text{
+  display: flex;
+  color:var(--red);
+  width: 200%;
+
+}
+.wrapper .error_message{
+  width: 50%;
+  font-size:4vh;
+    margin-top:2vh;
+    margin-bottom: 3vh;
+  /* font-weight: 600; */
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+}
 .wrapper .slide-controls {
   position: relative;
   display: flex;
-  height: 7vh;
+  /* height: 10vh; */
   width: 80%;
   overflow: hidden;
   margin: 2vh auto;
@@ -237,10 +253,13 @@ body {
   color: var(--red);
   font-weight: 500;
   text-align: center;
-  line-height: 7vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  line-height: 3vh;
   cursor: pointer;
   z-index: 1;
   transition: all 0.6s ease;
+  white-space: pre-wrap;
 }
 .slide-controls label.signup {
   color: var(--orange);

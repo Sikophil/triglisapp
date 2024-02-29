@@ -49,20 +49,11 @@
     
     {% endif %}
  
-
+    {% if user.is_authenticated %}
 <div class="wrapper">
   <div class="title-text">
-    <div class="title login">Login Form</div>
-    <div class="title signup">Signup Form</div>
+    <div class="title login" style="margin-bottom: 2vh;">Tischreservierung</div>
   </div>
-  <div class="form-container">
-    <div class="slide-controls">
-      <input type="radio" name="slide" id="login" checked>
-      <input type="radio" name="slide" id="signup">
-      <label for="login" class="slide login">Login</label>
-      <label for="signup" class="slide signup">Signup</label>
-      <div class="slider-tab"></div>
-    </div>
     <div class="form-inner">
       <form method="POST" action="{% url 'create_book'%}" class="login">
         {% csrf_token %}
@@ -79,35 +70,106 @@
           <div class="btn-layer"></div>
           <input type="submit" value="Tisch reservieren">
         </div>
-        <div class="signup-link">Not a member? <br><a href="#" style="color: var(--red);">Signup now</a></div>
+
+
+        <div class="error_message-text">
+        {% if messages %}
+        {% for message in messages %}
+        <div  class="error_message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
       </form>
-      <form method="POST" action="{% url 'register_user'%}" class="signup">
-        {% csrf_token %}
-        <div class="field">
-          <input type="text" name="username" placeholder="Username">
-        </div>
-        <div class="field">
-          <input type="text" name="last_name" placeholder="Nachname">
-        </div>
-        <div class="field">
-          <input type="text" name="phone" placeholder="Phone">
-        </div>
-        <div class="field">
-          <input type="password" name="password1" placeholder="Password">
-        </div>
-        <div class="field">
-          <input type="password" name="password2" placeholder="Confirm Password">
-        </div>
-        <div class="field btn">
-          <div class="btn-layer"></div>
-          <input type="submit" value="Signup">
-        </div>
-      </form>
+      
     </div>
   </div>
 
 </div>
+{% else %} 
+  
+<div class="wrapper">
 
+
+  <div class="title-text">
+    <div class="title" style="font-size: 4vh;">Tischreservierung</div>
+  </div>
+  <div class="form-container">
+    <div class="slide-controls">
+      <input type="radio" name="slide" id="login" checked>
+      <input type="radio" name="slide" id="signup">
+      <label for="login" class="slide login" >Mit meinem login</label>
+      <label for="signup" class="slide signup">Als neuer Gast</label>
+      <div class="slider-tab"></div>
+    </div>
+    <div class="form-inner">
+      <form method="POST" action="{% url 'create_book'%}" class="login">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" name="username" placeholder="Nutzername">
+        </div>
+        <div class="field">
+          <input type="password" name="password" placeholder="Passwort">
+        </div>
+        <div class="field">
+          <input type="date" name="date" placeholder="Datum">
+        </div>
+        <div class="field">
+          <input type="time" name="time" placeholder="Zeit">
+        </div>
+        <div class="field">
+          <input type="number" name="guests" placeholder="Anzahl der Gäste">
+        </div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Tisch reservieren" style="font-size: 3.5vh;">
+        </div>
+
+
+        <div class="error_message-text">
+        {% if messages %}
+        {% for message in messages %}
+        <div  class="error_message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+      </form>
+      <form method="POST" action="{% url 'create_book'%}" class="signup">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" name="last_name" placeholder="Name">
+        </div>
+        <div class="field">
+          <input type="text" name="phone" placeholder="Telefonnummer">
+        </div>
+        <div class="field">
+          <input type="date" name="date" placeholder="Datum">
+        </div>
+        <div class="field">
+          <input type="time" name="time" placeholder="Zeit">
+        </div>
+        <div class="field">
+          <input type="number" name="guests" placeholder="Anzahl der Gäste">
+        </div>
+        <div class="field btn">
+          <div class="btn-layer" ></div>
+          <input type="submit" value="Tisch reservieren" style="font-size: 3.5vh;">
+        </div>
+
+
+        <div class="error_message-text">
+        {% if messages %}
+        {% for message in messages %}
+        <div  class="error_message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+      </form>
+      
+    </div>
+  </div>
+
+</div>
+    {% endif %}
 <script>
 const loginText = document.querySelector(".title-text .login");
 const loginForm = document.querySelector("form.login");
