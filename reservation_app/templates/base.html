@@ -399,10 +399,22 @@ form .btn input[type="submit"] {
 
 
     </style>
+    <script>
+      function changeColor(event) {
+          // Get the selected color from the color picker
+          const newColor = event.target.value;
+  
+          // Update the CSS variable with the new color
+          const root = document.documentElement;
+          root.style.setProperty('--orange', newColor);
+          // You can repeat the above line for other variables as needed
+      }
+  </script>
 </head>
 <body>
     
     <div class="content">
+      <input type="color" id="colorPicker" onchange="changeColor(event)">
         {% block content %}{% endblock %}
     </div>
 

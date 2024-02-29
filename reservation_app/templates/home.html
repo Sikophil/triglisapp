@@ -63,20 +63,10 @@ border-radius: 2vw ;
         <div class="item flex-item">News 5</div>
       </div> -->
 
-
-      <input type="color" id="colorPicker" onchange="changeColor(event)">
+      
    
-      <script>
-        function changeColor(event) {
-            // Get the selected color from the color picker
-            const newColor = event.target.value;
-    
-            // Update the CSS variable with the new color
-            const root = document.documentElement;
-            root.style.setProperty('--orange', newColor);
-            // You can repeat the above line for other variables as needed
-        }
-    </script>
+      
+      
  {% load static %}
       <a href="{% url 'home' %}">
         <button class="tabbar home">
