@@ -410,11 +410,23 @@ form .btn input[type="submit"] {
           // You can repeat the above line for other variables as needed
       }
   </script>
+   <script>
+    function changeColor2(event) {
+        // Get the selected color from the color picker
+        const newColor = event.target.value;
+
+        // Update the CSS variable with the new color
+        const root = document.documentElement;
+        root.style.setProperty('--red', newColor);
+        // You can repeat the above line for other variables as needed
+    }
+</script>
 </head>
 <body>
     
     <div class="content">
       <input type="color" id="colorPicker" onchange="changeColor(event)">
+      <input type="color" id="colorPicker" onchange="changeColor2(event)">
         {% block content %}{% endblock %}
     </div>
 
