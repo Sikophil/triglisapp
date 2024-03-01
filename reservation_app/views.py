@@ -43,7 +43,7 @@ def confirm(request):
                 book.confirmation = 'Ja'
                 user =book.user
                 registration_tokens = [user.fcm_token]
-                send_notification(registration_tokens, 'Confirmed', 'Confirmed')
+                send_notification(registration_tokens, 'Reservierungsbestätigung', 'Ihre Reservierung für' +str(book.date)+ 'ist bestätigt')
 
 
                 book.save()

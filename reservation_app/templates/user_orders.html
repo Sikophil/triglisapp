@@ -14,8 +14,11 @@
      <div class="tables-container">
      {% for order in user_orders %}
 
-     <div class="table_button"><label>{{ order.date }} </label><br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
-     
+     <div class="table_button"><label>{{ order.date }} </label>
+      <hr> 
+      <div class="text_st">
+      <br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
+    </div>
      {% endfor %}
      <div class="button-container"></div>
      {% endif %}

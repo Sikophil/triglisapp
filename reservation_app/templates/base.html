@@ -25,8 +25,10 @@
             --c500: #ec8414;
             --c600: #d1610e;
             --c700: #ad4310;
+            --c800: #8d3413;
             --c900: #742b13;
             --c950: #421406;
+           
 
             --orange:var(--c950);
             /* --red:rgb(199,5,5); */
@@ -41,7 +43,8 @@
             --button_text:var(--c950);
             --button_background:var(--c300);
 
-            --table_text:var(--c950);
+            --table_title_text:var(--c950);
+            --table_text:var(--c800);
             --table_background:var(--c300);
 
             /* --button_text:var(--orange);yel style */
@@ -143,24 +146,48 @@ button img {
 
 .tables-container {
 height: 80vh;
+
 margin-top: -6vh;
 display: flex;
 flex-direction: column; 
 align-items: center;
+place-items: center;
+
         }
+.tables-container hr{
+border: 0; 
+height: .4vh;
+background-color: var(--table_title_text); 
+width:110%;
+margin-left: -2vw;
+margin-bottom:-3vh;
+
+}
 .table_button
 {
-margin-top: 1vh; 
+/* margin-top: 1vh;  */
 width: 93vw;
+
 max-width:var(--max_width);
-text-align: center;
+text-align: left;
+padding-top: 1vh;
+/*  */
 height:18vh;
 background: var(--table_background); 
-color:var(--tabble_text);
-text-align: center;
+color:var(--table_text);
 box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
 border: none;
+
 border-radius:var(--border-radius);
+}
+
+.table_button label{
+  color:var(--table_title_text);
+  padding-left: 2vw;
+  font-size: 3vh;
+}
+.text_st{
+  padding-left: 2vw;
 }
 .button-container {
 display: flex;
@@ -168,6 +195,7 @@ flex-direction: column;
 align-items: center; 
 margin-top: 0;
   }
+
 .std_button {
 margin-bottom: 10px; /* Add some spacing between buttons */
 width: 93vw;
@@ -394,6 +422,7 @@ form .btn input[type="submit"] {
   color:var(--submit_text);
   padding-left: 0;
   border-radius: var(--border-radius);
+  
   font-size: 4vh;
   font-weight: 500;
   cursor: pointer;

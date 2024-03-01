@@ -16,15 +16,17 @@
      {% if user.is_authenticated %}
      <div class="tables-container">
      {% for order in user_orders %}
-
-     <div class="table_button"><label style="color:var(--red)">{{ order.date }} </label><br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
-     </div>
+     <div class="table_button"><label>{{ order.date }} </label>
+      <hr> 
+      <div class="text_st">
+      <br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
+    </div>
      {% endfor %}
     
      {% endif %}
 
     <a href="{% url 'confirm' %}">
-      <button class="table_button">confirm</button>
+      <button class="table_button"><label>Confirm</label></button>
       <br/>
 <br/>
 <br/>
