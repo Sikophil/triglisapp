@@ -50,7 +50,7 @@
           <input type="submit" value="Login">
           
         </div>
-        <div class="signup-link">Not a member? <br><a href="#" style="color: var(--active_button);"> <!--red yel -->Signup now</a></div>
+        <div class="signup-link">Not a member? <br><a href="#"> <!--red yel -->Signup now</a></div>
       </form>
       <form method="POST" action="{% url 'register_user'%}" class="signup">
         {% csrf_token %}

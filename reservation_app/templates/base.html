@@ -23,6 +23,7 @@
             --c300: #f7c971;
             --c400: #f3a52c;
             --c500: #ec8414;
+            --c600: #d1610e;
             --c700: #ad4310;
             --c900: #742b13;
             --c950: #421406;
@@ -33,6 +34,7 @@
 
         
             --tabbar_background:black;
+            
             /* --tabbar_text:var(--orange);yel style */
             --tabbar_text:var(--c300);
 
@@ -55,6 +57,27 @@
             --font_menu_middle:2.5vh;
             --font_menu_small:2vh;
             --font_menu_big:3vh;
+
+            --field_text:var(--c400);
+            --field_background:var(--c600);
+            --field_border:var(--c900);
+
+            --slide_active_text:var(--c300);
+            --slide_active_background:var(--c600);
+
+            --slide_text:var(--c900);
+            --slide_background:var(--c600);
+
+            --submit_text:var(--slide_active_text);
+            --submit_background:var(--slide_active_background);
+
+            --form_text:var(--c900);
+
+            --place_holder_color:var(--c900);
+
+            --focus_border:var(--c900);
+
+            --link_color:var(--c600);
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -74,7 +97,7 @@
   padding: 0;
   box-sizing: border-box;
   /* font-family: 'Copperplate', fantasy; */
-  font-size: 3vh;
+  font-size: 2.5vh;
   font-family:  "Comic", cursive;
 }
                 html,
@@ -154,6 +177,7 @@ color:var(--button_text);
 border-radius:var(--border-radius);
 box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
 border: none;
+text-transform: uppercase;
 }
 
 
@@ -168,13 +192,14 @@ border: none;
 }
 
 ::selection {
-  background:var(--red);
-  color: var(--red);
+  background:var(--field_background);
+  color: var(--field_text);
 }
 .wrapper .title-text {
   display: flex;
+  text-transform: uppercase;
   /* color:var(--orange);yel style */
-  color:var(--red);
+  color:var(--form_text);
   width: 200%;
 }
 .wrapper .title {
@@ -186,7 +211,7 @@ border: none;
 }
 .wrapper .error_message-text{
   display: flex;
-  color:var(--red);
+  color:var(--form_text);
   width: 200%;
 
 }
@@ -208,13 +233,16 @@ border: none;
   overflow: hidden;
   margin: 2vh auto;
   justify-content: space-between;
-  border: .1vh solid var(--orange);
+  border: .2vh solid var(--field_border);
+  box-shadow: .3vw .3vh 0.3vh var(--field_border);
+  border-bottom-width: .3vh;
   border-radius: var(--border-radius);
 }
 .slide-controls .slide {
   height: 100%;
   width: 100%;
-  color: var(--orange);
+  color:var(--slide_active_text);
+  font-size: 3vh;
     /* yel red */
 
   font-weight: 500;
@@ -228,7 +256,7 @@ border: none;
   white-space: pre-wrap;
 }
 .slide-controls label.signup {
-  color: var(--orange);
+  color: var(--slide_active_text);
 }
 .slide-controls .slider-tab {
   position: absolute;
@@ -237,7 +265,7 @@ border: none;
   left: 0;
   z-index: 0;
   border-radius: var(--border-radius);
-  background: -webkit-linear-gradient(left,rgb(183, 118, 5),rgb(222, 145, 12),rgb(251,166,19),rgb(246, 171, 42));
+  background:var(--slide_active_background);
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 input[type="radio"] {
@@ -247,18 +275,18 @@ input[type="radio"] {
   left: 50%;
 }
 #signup:checked ~ label.signup {
-  color:  var(--orange);
+  color:var(--slide_active_text);
   /* yel red */
   cursor: default;
   user-select: none;
 }
 #signup:checked ~ label.login {
   /* color: var(--orange);yel */
-  color:var(--red)
+  color:var(--slide_text);
 }
 #login:checked ~ label.signup {
   /* color: var(--orange);yel */
-  color:var(--red)
+  color:var(--slide_text);
 }
 #login:checked ~ label.login {
   cursor: default;
@@ -294,27 +322,29 @@ input[type="radio"] {
   outline: none;
   padding-left: 2vw;
   border-radius: var(--border-radius);
-  border: .1vh solid var(--orange);
+  border: .1vh solid var(--field_border);
+  box-shadow: .3vw .3vh 0.3vh var(--field_border);
   border-bottom-width: .3vh;
-  background-color:var(--button_background);
+  background-color:var(--field_background);
   font-size: 3vh;
   /* color:var(--orange);yel */
-  color: var(--red);
+  color: var(--field_text);
   transition: all 0.3s ease;
   justify-content: center;
   align-items: center;
   place-items: center;
 }
 .form-inner form .field input:focus {
-  border-color:var(--red);
+  border-color:var(--focus_border);
+  box-shadow: .3vw .3vh 0.3vh var(--focus_border);
   color:var(--red);
 }
 .form-inner form .field input::placeholder {
-  color: #999;
+  color: var(--place_holder_color);
   transition: all 0.3s ease;
 }
 form .field input:focus::placeholder {
-  color:var(--red);
+  color:var(--place_holder_color);
 }
 .form-inner form .pass-link {
   margin-top: .5vh;
@@ -323,11 +353,13 @@ form .field input:focus::placeholder {
   text-align: center;
   margin-top: 2vh;
   /* color:var(--orange);yel */
-  color:var(--red);
+  color:var(--form_text);
+  font-size: 3vh;
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a {
-  color:var(--red);
+  color: var(--link_color);
+  font-size: 3vh;
   text-decoration: none;
 }
 .form-inner form .pass-link a:hover,
@@ -340,18 +372,20 @@ form .btn {
   border-radius: var(--border-radius);
   position: relative;
   overflow: hidden;
+  box-shadow: .3vw .3vh 0.3vh var(--field_border);
 }
 form .btn .btn-layer {
   height: 100%;
   width: 300%;
   position: absolute;
   left: -100%;
-  background:   -webkit-linear-gradient(left,rgb(183, 118, 5),rgb(222, 145, 12),rgb(251,166,19),rgb(246, 171, 42));
+  background:   var(--submit_background);
   border-radius: var(--border-radius);
   transition: all 0.4s ease;
 }
 form .btn:hover .btn-layer {
   left: 0;
+  
 }
 form .btn input[type="submit"] {
   height: 100%;
@@ -361,7 +395,8 @@ form .btn input[type="submit"] {
   background: none;
   border: none;
   /* color: var(--red);yel */
-  color:var(--orange);
+  text-transform: uppercase;
+  color:var(--submit_text);
   padding-left: 0;
   border-radius: var(--border-radius);
   font-size: 4vh;
@@ -371,7 +406,7 @@ form .btn input[type="submit"] {
 
 
     </style>
-    <script>
+    <!-- <script>
       function changeColor(event) {
           // Get the selected color from the color picker
           const newColor = event.target.value;
@@ -404,14 +439,14 @@ form .btn input[type="submit"] {
       root.style.setProperty('--button_background', newColor);
       // You can repeat the above line for other variables as needed
   }
-</script>
+</script> -->
 </head>
 <body>
     
     <div class="content">
-      <input type="color" id="colorPicker" onchange="changeColor(event)">
+      <!-- <input type="color" id="colorPicker" onchange="changeColor(event)">
       <input type="color" id="colorPicker" onchange="changeColor2(event)">
-      <input type="color" id="colorPicker" onchange="changeColor3(event)">
+      <input type="color" id="colorPicker" onchange="changeColor3(event)"> -->
         {% block content %}{% endblock %}
     </div>
 

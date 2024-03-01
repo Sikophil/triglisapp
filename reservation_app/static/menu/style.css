@@ -16,6 +16,7 @@
   display: block;
   font-weight:normal;
   text-align: Center;
+  text-transform: uppercase;
 }
 
 .menu-item {
@@ -66,7 +67,7 @@
   /* font-weight: bold; */
   /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
   font-size: var(--font_menu_middle);
-  margin-top: -3vh;
+  margin-top: -3.5vh;
   margin-left:2vw;
   margin-right:2vw;
 }
