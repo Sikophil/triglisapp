@@ -52,18 +52,20 @@
             /* --active_button:rgb(199,5,5);  */
             --active_button:var(--c700);
             --border-radius:2vh;
+            --border-radius_slide:1.7vh;
             --max_width:10in;
 
             --font_menu_middle:2.5vh;
             --font_menu_small:2vh;
             --font_menu_big:3vh;
 
-            --field_text:var(--c400);
+            --field_text:var(--c300);
+            --field_text_active:var(--c100);
             --field_background:var(--c600);
             --field_border:var(--c900);
 
             --slide_active_text:var(--c300);
-            --slide_active_background:var(--c600);
+            --slide_active_background:var(--c700);
 
             --slide_text:var(--c900);
             --slide_background:var(--c600);
@@ -73,7 +75,7 @@
 
             --form_text:var(--c900);
 
-            --place_holder_color:var(--c900);
+            --place_holder_color:var(--c950);
 
             --focus_border:var(--c900);
 
@@ -193,12 +195,10 @@ text-transform: uppercase;
 
 ::selection {
   background:var(--field_background);
-  color: var(--field_text);
 }
 .wrapper .title-text {
   display: flex;
   text-transform: uppercase;
-  /* color:var(--orange);yel style */
   color:var(--form_text);
   width: 200%;
 }
@@ -254,6 +254,7 @@ text-transform: uppercase;
   z-index: 1;
   transition: all 0.6s ease;
   white-space: pre-wrap;
+  
 }
 .slide-controls label.signup {
   color: var(--slide_active_text);
@@ -264,7 +265,7 @@ text-transform: uppercase;
   width: 50%;
   left: 0;
   z-index: 0;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius_slide);
   background:var(--slide_active_background);
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -276,16 +277,13 @@ input[type="radio"] {
 }
 #signup:checked ~ label.signup {
   color:var(--slide_active_text);
-  /* yel red */
   cursor: default;
   user-select: none;
 }
 #signup:checked ~ label.login {
-  /* color: var(--orange);yel */
   color:var(--slide_text);
 }
 #login:checked ~ label.signup {
-  /* color: var(--orange);yel */
   color:var(--slide_text);
 }
 #login:checked ~ label.login {
@@ -327,7 +325,6 @@ input[type="radio"] {
   border-bottom-width: .3vh;
   background-color:var(--field_background);
   font-size: 3vh;
-  /* color:var(--orange);yel */
   color: var(--field_text);
   transition: all 0.3s ease;
   justify-content: center;
@@ -337,7 +334,7 @@ input[type="radio"] {
 .form-inner form .field input:focus {
   border-color:var(--focus_border);
   box-shadow: .3vw .3vh 0.3vh var(--focus_border);
-  color:var(--red);
+  color:var(--field_text_active);
 }
 .form-inner form .field input::placeholder {
   color: var(--place_holder_color);
@@ -352,7 +349,6 @@ form .field input:focus::placeholder {
 .form-inner form .signup-link {
   text-align: center;
   margin-top: 2vh;
-  /* color:var(--orange);yel */
   color:var(--form_text);
   font-size: 3vh;
 }
@@ -394,7 +390,6 @@ form .btn input[type="submit"] {
   position: relative;
   background: none;
   border: none;
-  /* color: var(--red);yel */
   text-transform: uppercase;
   color:var(--submit_text);
   padding-left: 0;
