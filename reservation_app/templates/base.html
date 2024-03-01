@@ -16,21 +16,45 @@
         }
     :root { 
             /* --orange:rgb(251,166,19); yel style*/
-            --orange:rgb(74,36,26);
-            /* --red:rgb(199,5,5); */
-            --red:rgb(247,201,113);
+            /* --orange:rgb(74,36,26); */
+            --c50:  #fef9ec;
+            --c100: #fcecc9;
+            --c200: #f9d78e;
+            --c300: #f7c971;
+            --c400: #f3a52c;
+            --c500: #ec8414;
+            --c700: #ad4310;
+            --c900: #742b13;
+            --c950: #421406;
 
+            --orange:var(--c950);
+            /* --red:rgb(199,5,5); */
+            --red:var(--c300);
+
+        
             --tabbar_background:black;
             /* --tabbar_text:var(--orange);yel style */
-            --tabbar_text:var(--red);
-            --button_background:black;
+            --tabbar_text:var(--c300);
+
+            --button_text:var(--c950);
+            --button_background:var(--c300);
+
+            --table_text:var(--c950);
+            --table_background:var(--c300);
+
             /* --button_text:var(--orange);yel style */
-            --button_text:var(--red);
-            --normal_text:var(--red);
+
+            --body_text:var(--c100);
+            --body_background:var(--c950);
             /* --active_button:var(--red); yel style*/
-            --active_button:rgb(199,5,5); 
+            /* --active_button:rgb(199,5,5);  */
+            --active_button:var(--c700);
             --border-radius:2vh;
             --max_width:10in;
+
+            --font_menu_middle:2.5vh;
+            --font_menu_small:2vh;
+            --font_menu_big:3vh;
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -44,15 +68,13 @@
             /* --background:#59253a; */
 
         }
-           /* background: linear-gradient(to bottom,rgb(240, 127, 187) 0%,rgb(133, 75, 106) 100%); */
-                /* rgb(133, 75, 106) */
-                /* Pink: rgb(232, 53, 149) */
-                * {
+
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   /* font-family: 'Copperplate', fantasy; */
-  font-size: 3.5vh;
+  font-size: 3vh;
   font-family:  "Comic", cursive;
 }
                 html,
@@ -62,155 +84,92 @@ body {
   height: 90vh;
   width: 100%;
   place-items: center;
-  background:var(--orange);
+  background:var(--body_background);
  
 }
-
-     
-        
-    
-    .standard_button {
-        /* position: fixed; */
-        /* bottom: 70vh; */
-        /* left:10vw; */
-        /* width:80vw;
-        height:10vh;
-        max-width: var(--max_width);
-        color:var(--button_text);
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: var(--border-radius);
-        border:none;
-        cursor: pointer;
-        background-color:var(--button_background) ; */
-        /* overflow: hidden; */
-        width: 93vw;
-
-        height:10vh;
-        max-width:var(--max_width);
-        /*margin-bottom: 1vh;
-        background: black; */
-        margin: 0 auto;
-        color:var(--orange);
-        border-radius:var(--border-radius);
-        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
-        position: relative;
-        display: flex;
-        }
-    
-        .tabbar {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        bottom: 0;
-        width: 27vw;
-        height: 10vh;
-        text-align: center;
-        text-decoration: none;
-        border:none;
-        align-items: center;
-        justify-content: center;
-        font-size: 2vh;
-        color:var(--tabbar_text);
-        background-color: var(--tabbar_background);
+/* Tabbar */
+.tabbar {
+display: flex;
+flex-direction: column;
+position: fixed;
+bottom: 0;
+width: 27vw;
+height: 10vh;
+text-align: center;
+text-decoration: none;
+border:none;
+align-items: center;
+justify-content: center;
+font-size: 1.7vh;
+color:var(--tabbar_text);
+background-color: var(--tabbar_background);
 }
-    button img {
-        margin-top: -3vh;
-            height: 3vh;
-            width: 3vh;
-            margin-bottom: -3vh; 
-        }
-    .home{ left: -1vw}
-    .menu{ left: 24vw}
-    .mybook{ left: 49vw}
-    .login_user{ left: 74vw}
-
-    ::selection {
-  background:var(--red);
-  color: var(--red);
-}
-.tables-container {
-            height: 80vh;
-            margin-top: -6vh;
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            /* margin-top: 20px; */
-        }
-        .table_button
-        {
-            /* margin-bottom: 5vh;  */
-            margin-top: 1vh; 
-            width: 93vw;
-        padding-top: 3vh;
-        max-width:var(--max_width);
-        text-align: center;
-        /* padding-left:1vw; */
-        height:18vh;
-        background: var(--button_background); 
-        color:var(--orange);
-        text-align: center;
-        border-radius:var(--border-radius);
-        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
-        border: none;
-        }
-.button-container {
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            margin-top: 0;
-        }
-
-        /* Apply styling to the buttons */
-        .std_button {
-            margin-bottom: 10px; /* Add some spacing between buttons */
-            width: 93vw;
-            text-align: center;
-        max-width:var(--max_width);
-        height:10vh;
-        /* max-width:var(--max_width); */
-        /*margin-bottom: 1vh;*/
-        background: var(--button_background); 
-        /* margin: 0 auto; */
-        color:var(--button_text);
-        border-radius:var(--border-radius);
-        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
-        border: none;
-        /* position: relative; */
-        /* display: flex; */
-        }
-        .new_book_button {
-            margin-bottom: 10px; /* Add some spacing between buttons */
-            width: 100vw;
-            text-align: center;
-            max-width:var(--max_width);
-        height:8vh;
-        /* max-width:var(--max_width); */
-        /*margin-bottom: 1vh;*/
-        background: var(--button_background);
-        /* margin: 0 auto; */
-        /* padding-left: 2vw; */
-        color:var(--orange);
-        border-radius:var(--border-radius);
-        box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
-        border: none;
-        /* position: relative; */
-        /* display: flex; */
-        }
-        .new_book_button label {
-        padding-left: 2vw;
-        /* Add other desired styles here */
+button img {
+  margin-top: -3vh;
+  height: 3vh;
+  width: 3vh;
+  margin-bottom: -2.5vh; 
     }
+.home{ left: -1vw}
+.menu{ left: 24vw}
+.mybook{ left: 49vw}
+.login_user{ left: 74vw}
+
+
+.tables-container {
+height: 80vh;
+margin-top: -6vh;
+display: flex;
+flex-direction: column; 
+align-items: center;
+        }
+.table_button
+{
+margin-top: 1vh; 
+width: 93vw;
+max-width:var(--max_width);
+text-align: center;
+height:18vh;
+background: var(--table_background); 
+color:var(--tabble_text);
+text-align: center;
+box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+border: none;
+border-radius:var(--border-radius);
+}
+.button-container {
+display: flex;
+flex-direction: column;
+align-items: center; 
+margin-top: 0;
+  }
+.std_button {
+margin-bottom: 10px; /* Add some spacing between buttons */
+width: 93vw;
+text-align: center;
+max-width:var(--max_width);
+height:10vh;
+background: var(--button_background); 
+color:var(--button_text);
+border-radius:var(--border-radius);
+box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+border: none;
+}
+
+
 .wrapper {
   overflow: hidden;
   width: 93vw;
-  /* height:80vh; */
   max-width:var(--max_width);
   margin-top: -3vh;
   background: var(--button_background);
   border-radius:var(--border-radius);
   box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
+}
+
+::selection {
+  background:var(--red);
+  color: var(--red);
 }
 .wrapper .title-text {
   display: flex;
@@ -221,8 +180,7 @@ body {
 .wrapper .title {
   width: 50%;
   font-size:5vh;
-    margin-top:2vh;
-  /* font-weight: 600; */
+  margin-top:2vh;
   text-align: center;
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
