@@ -1,7 +1,7 @@
 .menu-body {
   margin: 0 auto;
   display: block;
-  color: var(--normal_text);
+  color: var(--body_text);
   max-width: 10in;
   width:98vw;
 }
@@ -11,16 +11,16 @@
 }
 
 .menu-section-title {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 5vh;
+  /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
+  font-size: var(--font_menu_big);
   display: block;
   font-weight:normal;
   text-align: Center;
+  text-transform: uppercase;
 }
 
 .menu-item {
   margin: 1vh 0;
-  font-size: 3vh;
 }
 /* .menu-title {
   display: flex;
@@ -42,19 +42,20 @@
   background-color: var(--tabbar_background);
 } */
 .menu-item-name{
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: bold;
-  font-size: 3vh;
+  /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
+  /* font-weight: bold; */
+  font-size: var(--font_menu_middle);
   margin-left:2vw;
   margin-right: 30vw;
+  /* margin-bottom: 0.5vh; */
 }
 
 .menu-item-description {
-  border-top: .4vh dotted var(--normal_text);
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  border-top: .4vh dotted var(--body_text);
+  /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
   font-style: italic;
-  font-size: 2.5vh;
-  padding-top: 1vh;
+  font-size: var(--font_menu_small);
+  padding-top: 0vh;
   margin-bottom: 2vh;
   margin-left:2vw;
   margin-right:2vw;
@@ -63,9 +64,9 @@
 
 .menu-item-price{
   float: right;
-  font-weight: bold;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 3vh;
+  /* font-weight: bold; */
+  /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
+  font-size: var(--font_menu_middle);
   margin-top: -3.5vh;
   margin-left:2vw;
   margin-right:2vw;
