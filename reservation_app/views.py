@@ -177,7 +177,7 @@ def user_orders(request):
             user_orders = Book.objects.filter(user=request.user)
             return render(request, 'user_orders.html', {'user_orders': user_orders})
     else:
-        return redirect('login_user')  
+        return render(request, 'user_orders.html')
         # return render(request, 'user_orders.html', {'user_orders': 0})
 
 

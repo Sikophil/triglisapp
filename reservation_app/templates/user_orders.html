@@ -12,6 +12,7 @@
   </style>
      {% if user.is_authenticated %}
      <div class="tables-container">
+
      {% for order in user_orders %}
 
      <div class="table_button"><label>{{ order.date }} </label>
@@ -20,7 +21,20 @@
       <br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
     </div>
      {% endfor %}
-     <div class="button-container"></div>
+     <div class="button-container">
+      <a href="{% url 'create_book' %}">
+          <button class="std_button">+ Neuen Tisch reservieren</button>
+      </a>   
+  
+      
+  </div>
+     {% else %}
+    <div class="text_orders"> 
+      Leider haben Sie noch keine reservierten Tische.<br><br>
+      Bitte <a href="{% url 'login_user' %}">melden Sie an</a> um Ihre Reservierungen einzusehen oder reservieren Sie  <a href="{% url 'create_book' %}"> einen neuen Tisch</a>.
+    </div>
+
+
      {% endif %}
      <br/>
     <br/>
