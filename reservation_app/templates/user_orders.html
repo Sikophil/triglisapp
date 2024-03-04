@@ -30,7 +30,8 @@
       {% if order.decoration == True %}
       <br>Der Tisch wird schön 
       {% if order.color == True %} in {{ order.color }}{% endif %}
-      eingedeckt (+1.5€ pro Person)
+      eingedeckt
+       <!-- (+1.5€ pro Person) -->
       {% endif %}
 
       {% if order.comment != "" %}
