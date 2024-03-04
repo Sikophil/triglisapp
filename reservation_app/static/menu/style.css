@@ -13,11 +13,5 @@ border: none;
   width: 100vw;
 } 
 .menu-item-price1{
-  margin-right:7vw;
-}
-.menu-item-price2{
-  margin-right:15vw;
-}
-.menu-item-price3{
-  margin-right:20vw;
+  margin-right:225px;
 }

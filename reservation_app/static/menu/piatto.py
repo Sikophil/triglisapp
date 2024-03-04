@@ -63,7 +63,7 @@ for category in categories:
 
         html += "<div class=\"menu-item-name\">" + item["item_name"] + "</div>"
         html += "<div class=\"menu-item-price\">€" + item["item_price"] + "</div>"
-        html += "<div class=\"menu-item-description\">" + description
+        html += "<div class=\"menu-item-description\">" + description 
         if (item == items[-1]) and (category==categories[-1]):
             html += "<br>"
             html += "<br>"
@@ -123,13 +123,14 @@ for category in categories:
 
 
         html += "<div class=\"menu-item\">"
-
+        if item["item_name"]=="":
+            html += "<br>"
         html += "<div class=\"menu-item-name\">" + item["item_name"] + "</div>"
-        html += "<div class=\"menu-item-price \">" + item["item_price_big"] + "</div>"
-        html += "<div class=\"menu-item-price menu-item-price1\">" + item["item_big"] + "</div>"
-        html += "<div class=\"menu-item-price menu-item-price2\">" + item["item_price"] + "</div>"
-        html += "<div class=\"menu-item-price menu-item-price3\">" + item["item_small"] + "</div>"
-        html += "<div class=\"menu-item-description\">" + description
+        html += "<div class=\"menu-item-price\">" + item["item_price_big"] + "</div>"
+        html += "<div class=\"menu-item-price menu-item-price1\">" + item["item_price"] + "</div>"
+        if item["item_name"]!="":
+            html += "<div class=\"menu-item-description\">" + description
+            html += "</div>"
         if (item == items[-1]) and (category==categories[-1]):
             html += "<br>"
             html += "<br>"
@@ -140,7 +141,7 @@ for category in categories:
             html += "<br>"
             html += "<br>"
 
-        html += "</div>"
+        
         html += "</div>"
 
 
