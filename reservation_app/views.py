@@ -187,6 +187,13 @@ def create_book(request):
         date = request.POST.get('date')
         time = request.POST.get('time')
         guests = request.POST.get('guests')
+        decoration_value=request.POST.get('decoration')
+        color = request.POST.get('color')
+        comment = request.POST.get('comment')
+        if decoration_value == 'on':
+            decoration = True
+        else:
+            decoration = False
         if request.user.is_authenticated:
             user = request.user
 
@@ -194,7 +201,7 @@ def create_book(request):
                 messages.error(request, "Registrierungsfehler. Bitte geben Sie gültige Daten an.")
                 return redirect('create_book')
 
-            book = Book.objects.create(user=user, date=date,time=time,guests=guests)
+            book = Book.objects.create(user=user, date=date,time=time,guests=guests,comment=comment,decoration=decoration,color=color)
             
             superusers = customuser.objects.filter(is_superuser=True)
             registration_tokens = [superuser.fcm_token for superuser in superusers]
@@ -212,7 +219,7 @@ def create_book(request):
                 else:
                     messages.error(request, "Falscher Login oder Passwort")
                     return redirect('create_book')
-                book = Book.objects.create(user=user, date=date,time=time,guests=guests)
+                book = Book.objects.create(user=user, date=date,time=time,guests=guests,comment=comment,decoration=decoration,color=color)
             
                 superusers = customuser.objects.filter(is_superuser=True)
                 registration_tokens = [superuser.fcm_token for superuser in superusers]
@@ -221,7 +228,7 @@ def create_book(request):
                 guest_user_create_book(request)
                 last_name=request.POST.get('last_name')
                 request.user.name=last_name
-                book = Book.objects.create(last_name=last_name,phone=phone, date=date,time=time,guests=guests,user=request.user)
+                book = Book.objects.create(last_name=last_name,phone=phone, date=date,time=time,guests=guests,user=request.user,comment=comment,decoration=decoration,color=color)
 
                 superusers = customuser.objects.filter(is_superuser=True)
                 registration_tokens = [superuser.fcm_token for superuser in superusers]

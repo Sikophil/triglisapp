@@ -14,11 +14,29 @@
      <div class="tables-container">
 
      {% for order in user_orders %}
-
-     <div class="table_button"><label>{{ order.date }} </label>
+     {% if order.decoration and order.comment != ""%}
+     <div class="table_button" style="height:23.5vh"><label>{{ order.date }} </label>
+      {% else %}
+      {% if order.decoration or order.comment != ""%}
+      <div class="table_button" style="height:20vh"><label>{{ order.date }} </label>
+        {% else %}
+        <div class="table_button"><label>{{ order.date }} </label>
+        {% endif %}
+        {% endif %}
+     
       <hr> 
       <div class="text_st">
-      <br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
+      <br>Zeit: {{ order.time }} <br> Gäste: {{ order.guests }}
+      {% if order.decoration == True %}
+      <br>Der Tisch wird schön 
+      {% if order.color == True %} in {{ order.color }}{% endif %}
+      eingedeckt (+1.5€ pro Person)
+      {% endif %}
+
+      {% if order.comment != "" %}
+      <br>Kommentar: {{ order.comment }}
+      {% endif %}
+      <br> Bestätigt: {{ order.confirmation }}<br><br></label>
     </div>
      {% endfor %}
      <div class="button-container">

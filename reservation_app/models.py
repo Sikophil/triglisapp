@@ -13,6 +13,9 @@ class Book(models.Model):
     confirmation= models.CharField(default='Nein', max_length=20)
     fcm_token = models.CharField(max_length=255, blank=True, null=True)
     phone     = models.CharField(max_length=30,blank=True,null=True)
+    comment   = models.CharField(max_length=300,blank=True,null=True)
+    decoration = models.BooleanField(default=False)
+    color =    models.CharField(max_length=300,blank=True,null=True)
 
     def __str__(self):
         if self.last_name == '': 

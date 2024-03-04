@@ -8,8 +8,7 @@
   .home{color:var(--active_button)}
   </style>
 
-  
- 
+
     {% if user.is_authenticated %}
 <div class="wrapper">
   <div class="title-text">
@@ -27,10 +26,35 @@
         <div class="field">
           <input type="number" name="guests" placeholder="Anzahl der Gäste">
         </div>
+        
+        <!-- <div class="custom-checkbox">
+          <input type="checkbox" name="decoration">
+          <label for="myCheckbox">Tisch schön eindecken</label>
+        </div>
+        <div class="hidden">
+          <label for="extraInput">Additional Input:</label>
+          <input type="text" id="extraInput" name="extraInput">
+        </div> -->
+        <div class="custom-checkbox">
+          <input type="checkbox" id="myCheckbox" name="decoration">
+          <label for="myCheckbox">Tisch schön eindecken  (+1.5€ pro Person)</label>
+        </div>
+        
+        <div id="additionalInput" class="hidden">
+          <div class="field">
+          <input type="text" id="extraInput" name="extraInput" placeholder="Eindeckung Farbe">
+        </div>
+        </div>
+
+        <div class="field">
+          <input type="text" name="comment" placeholder="Kommentar (optional)">
+        </div>
+
         <div class="field btn">
           <div class="btn-layer"></div>
           <input type="submit" value="Tisch reservieren">
         </div>
+
 
 
         <div class="error_message-text">
@@ -58,8 +82,8 @@
     <div class="slide-controls">
       <input type="radio" name="slide" id="login" checked>
       <input type="radio" name="slide" id="signup">
-      <label for="login" class="slide login" style="  font-size: 3vh;" >Mit meinem login</label>
-      <label for="signup" class="slide signup" style="  font-size: 3vh;" >Als neuer Gast</label>
+      <label for="login" class="slide login" >Mit meinem login</label>
+      <label for="signup" class="slide signup"  >Als neuer Gast</label>
       <div class="slider-tab"></div>
     </div>
     <div class="form-inner">
@@ -79,6 +103,20 @@
         </div>
         <div class="field">
           <input type="number" name="guests" placeholder="Anzahl der Gäste">
+        </div>
+        <div class="custom-checkbox">
+          <input type="checkbox" id="myCheckbox" name="decoration">
+          <label for="myCheckbox">Tisch schön eindecken  (+1.5€ pro Person)</label>
+        </div>
+        
+        <div id="additionalInput" class="hidden">
+          <div class="field">
+          <input type="text" id="extraInput" name="extraInput" placeholder="Eindeckung Farbe">
+        </div>
+        </div>
+
+        <div class="field">
+          <input type="text" name="comment" placeholder="Kommentar (optional)">
         </div>
         <div class="field btn">
           <div class="btn-layer"></div>
@@ -110,10 +148,26 @@
         </div>
         <div class="field">
           <input type="number" name="guests" placeholder="Anzahl der Gäste">
+          
         </div>
+        <div class="custom-checkbox">
+          <input type="checkbox" id="myCheckbox2" name="decoration">
+          <label for="myCheckbox2">Tisch schön eindecken  (+1.5€ pro Person)</label>
+        </div>
+        
+        <div id="additionalInput2" class="hidden">
+          <div class="field">
+          <input type="text" id="extraInput" name="extraInput" placeholder="Eindeckung Farbe">
+        </div>
+        </div>
+
+        <div class="field">
+          <input type="text" name="comment" placeholder="Kommentar (optional)">
+        </div>
+
         <div class="field btn">
           <div class="btn-layer" ></div>
-          <input type="submit" value="Tisch reservieren" style="font-size: 3.5vh;">
+          <input type="submit" value="Tisch reservieren">
         </div>
 
 
@@ -131,6 +185,8 @@
 
 </div>
     {% endif %}
+
+
 <script>
 const loginText = document.querySelector(".title-text .login");
 const loginForm = document.querySelector("form.login");
@@ -149,7 +205,23 @@ signupLink.onclick = () => {
   signupBtn.click();
   return false;
 };
+</script>
+<script>
+const checkbox = document.getElementById('myCheckbox');
+    const additionalInput = document.getElementById('additionalInput');
+
+    checkbox.addEventListener('change', function() {
+        additionalInput.classList.toggle('hidden', !checkbox.checked);
+    });
   </script>
+  <script>
+    const checkbox2 = document.getElementById('myCheckbox2');
+        const additionalInput2 = document.getElementById('additionalInput2');
+    
+        checkbox2.addEventListener('change', function() {
+            additionalInput2.classList.toggle('hidden', !checkbox2.checked);
+        });
+      </script>
   {% load static %}
   <a href="{% url 'home' %}">
     <button class="tabbar home">
