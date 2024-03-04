@@ -1,1 +1,15 @@
 
+.wrapper .slide-controls {
+    background-color: var(--c300);
+    height: 6vh;
+    /* max-width: 6in; */
+
+  }
+.slide-controls .slide {
+    margin-top: -0.75vh;
+}
+.wrapper{
+    margin-top: 1vh;
+    width: 100vw;
+  }
+  
