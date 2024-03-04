@@ -1,15 +1,23 @@
-
 .wrapper .slide-controls {
-    background-color: var(--c300);
-    height: 6vh;
-    /* max-width: 6in; */
+  background-color: var(--c300);
+  height: 6vh;
+  text-align: center;
+border: none;
 
-  }
+}
 .slide-controls .slide {
-    margin-top: -0.75vh;
+   margin-top: 1.5vh; 
 }
 .wrapper{
-    margin-top: 1vh;
-    width: 100vw;
-  }
-  
+  margin-top: 1vh;
+  width: 100vw;
+} 
+.menu-item-price1{
+  margin-right:7vw;
+}
+.menu-item-price2{
+  margin-right:15vw;
+}
+.menu-item-price3{
+  margin-right:20vw;
+}
