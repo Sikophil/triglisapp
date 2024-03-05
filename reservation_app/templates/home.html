@@ -16,6 +16,7 @@
     </a>     
 
 </div>
+{% if user.is_authenticated %}
 <div class="notifications">
     <div class="title-text">
         <div class="title">Benachrichtigungen</div>
@@ -39,6 +40,7 @@
 <div class="title-text">
     <div class="title" style="font-size: 2vh;padding-bottom: 2vh;">Sie haben keine Benachrichtigungen</div>
   </div>
+{% endif %}
 {% endif %}
 </div>
 

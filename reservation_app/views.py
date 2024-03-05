@@ -26,8 +26,11 @@ firebase_admin.initialize_app(cred)
 # firebase_admin.initialize_app(firebase_cred)
 # from .models import Order
 def home(request):
-    notifications = Notification.objects.filter(user=request.user, is_read=False)
-    return render(request,"home.html",{'notifications': notifications})
+    if request.user.is_authenticated:
+        notifications = Notification.objects.filter(user=request.user, is_read=False)
+        return render(request,"home.html",{'notifications': notifications})
+    else:
+        return render(request,"home.html",{'notifications': []})
 
 def menu(request):
     return render(request,"karte.html",{})
@@ -210,7 +213,7 @@ def create_book(request):
             registration_tokens = [superuser.fcm_token for superuser in superusers]
             send_notification(superusers,registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
 
-            return redirect('home') 
+            return redirect('user_orders') 
         else:
             phone = request.POST.get('phone')
             if not phone:
@@ -236,7 +239,7 @@ def create_book(request):
                 superusers = customuser.objects.filter(is_superuser=True)
                 registration_tokens = [superuser.fcm_token for superuser in superusers]
                 send_notification(superusers,registration_tokens, 'Neue Reservirung', f"{book.last_name} - {book.date} - {book.time} - {book.guests} pax")
-
+                return redirect('user_orders') 
 
 
             
