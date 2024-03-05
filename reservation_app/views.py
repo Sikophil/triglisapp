@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .forms import SignUpForm
 from django import forms
-from .models import Book
+from .models import Book,Notification
 from .forms import BookForm
 import firebase_admin
 from firebase_admin import credentials, messaging
@@ -26,7 +26,8 @@ firebase_admin.initialize_app(cred)
 # firebase_admin.initialize_app(firebase_cred)
 # from .models import Order
 def home(request):
-    return render(request,"home.html",{})
+    notifications = Notification.objects.filter(user=request.user, is_read=False)
+    return render(request,"home.html",{'notifications': notifications})
 
 def menu(request):
     return render(request,"karte.html",{})
@@ -43,8 +44,10 @@ def confirm(request):
                 book.confirmation = 'Ja'
                 user =book.user
                 registration_tokens = [user.fcm_token]
-                send_notification(registration_tokens, 'Reservierungsbestätigung', 'Ihre Reservierung für ' +str(book.date)+ ' ist bestätigt')
-
+                titel='Reservierungsbestätigung'
+                message='Ihre Reservierung für ' +str(book.date)+ ' ist bestätigt'
+                send_notification([user],registration_tokens, titel, message)
+               
 
                 book.save()
     return render(request, "home.html")
@@ -148,11 +151,11 @@ def register_user(request):
 
         # Authenticate the new user
         authenticated_user = authenticate(username=username, password=password1)
-
+        login(request, authenticated_user)
         # Notify superusers
         superusers = customuser.objects.filter(is_superuser=True)
         registration_tokens = [superuser.fcm_token for superuser in superusers]
-        send_notification(registration_tokens, 'New User', 'New User')
+        send_notification(superusers,registration_tokens, 'New User', 'New User')
 
         messages.success(request, "New User!")
         return redirect('home')
@@ -205,7 +208,7 @@ def create_book(request):
             
             superusers = customuser.objects.filter(is_superuser=True)
             registration_tokens = [superuser.fcm_token for superuser in superusers]
-            send_notification(registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
+            send_notification(superusers,registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
 
             return redirect('home') 
         else:
@@ -223,7 +226,7 @@ def create_book(request):
             
                 superusers = customuser.objects.filter(is_superuser=True)
                 registration_tokens = [superuser.fcm_token for superuser in superusers]
-                send_notification(registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
+                send_notification(superusers,registration_tokens, 'Neue Reservirung', f"{user.last_name} - {book.date} - {book.time} - {book.guests} pax")
             else:
                 guest_user_create_book(request)
                 last_name=request.POST.get('last_name')
@@ -232,7 +235,7 @@ def create_book(request):
 
                 superusers = customuser.objects.filter(is_superuser=True)
                 registration_tokens = [superuser.fcm_token for superuser in superusers]
-                send_notification(registration_tokens, 'Neue Reservirung', f"{book.last_name} - {book.date} - {book.time} - {book.guests} pax")
+                send_notification(superusers,registration_tokens, 'Neue Reservirung', f"{book.last_name} - {book.date} - {book.time} - {book.guests} pax")
 
 
 
@@ -291,7 +294,7 @@ import json
 
 
 
-def send_notification(registration_ids , message_title , message_desc):
+def send_notification(users,registration_ids , message_title , message_desc):
     fcm_api = "AAAAS_Pnbmo:APA91bE2WuxV2c2L7sbnmzBd9JKaixg6yhgd5GXvETekUzbQltTApy1y7HfWbATx2D2HERXC1aRcAjrasnoBdd0Q7Xtx_s1CCS4Xw-6fWx8fIaiMYjG2_BIqZv1Tz01xkhDjK3n0cHVk"
     url = "https://fcm.googleapis.com/fcm/send"
     
@@ -308,7 +311,8 @@ def send_notification(registration_ids , message_title , message_desc):
             "icon": icon_url
         }
     }
-
+    for user in users:
+        Notification.objects.create(user=user, title=message_title,message=message_desc)
     result = requests.post(url,  data=json.dumps(payload), headers=headers )
     print(result.json())
 

@@ -12,7 +12,11 @@
   </style>
      {% if user.is_authenticated %}
      <div class="tables-container">
-
+      {% if user_orders|length > 0 %}
+        <div style="color:var(--body_text);font-size:4vh;">
+          Ihre Reservierungen
+          </div>
+      {% endif %}
      {% for order in user_orders %}
      {% if order.decoration and order.comment != ""%}
      <div class="table_button" style="height:23.5vh"><label>{{ order.date }} </label>

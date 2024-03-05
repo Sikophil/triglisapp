@@ -25,6 +25,11 @@ class Book(models.Model):
 
 class Notification(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    message = models.TextField()
+    title = models.TextField(default='')
+    message = models.TextField(default='')
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+       return f"{self.user} - {self.title} - {self.message} "
+

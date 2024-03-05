@@ -9,13 +9,41 @@
 <style>
    
 </style>
+<div class="tables-container">
 <div class="button-container">
     <a href="{% url 'create_book' %}">
         <button class="std_button">Tisch reservieren</button>
-    </a>   
+    </a>     
 
-    
 </div>
+<div class="notifications">
+    <div class="title-text">
+        <div class="title">Benachrichtigungen</div>
+      </div>
+
+{% if notifications %}
+    <ul>
+        {% for notification in notifications %}
+            <div class="notification">
+                <div class="title_not">
+                {{ notification.title }}
+            </div>
+            <!-- <hr> -->
+            <div class="message">
+                {{ notification.message }}
+            </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No notifications.</p>
+{% endif %}
+</div>
+
+
+
+</div>
+</div>
+
 
     <style>
 

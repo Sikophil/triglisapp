@@ -71,7 +71,7 @@
         </div>
         <div class="field btn">
           <div class="btn-layer"></div>
-          <input type="submit" value="Signup">
+          <input type="submit" value="Signup"  id="requestPermissionButton">
         </div>
       </form>
     </div>
@@ -137,26 +137,132 @@ signupLink.onclick = () => {
   </a>
   
   {% endif %}
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+            console.error('Error registering Service Worker:', error);
+        });
+}
+   var firebaseConfig = {
+    apiKey: "AIzaSyCtnbzPNKXXP0ecFOdX6HnH0WAZdSTTEXo",
+    authDomain: "triglis-8c70f.firebaseapp.com",
+    projectId: "triglis-8c70f",
+    storageBucket: "triglis-8c70f.appspot.com",
+    messagingSenderId: "326214577770",
+    appId: "1:326214577770:web:cb91775ceef9401eab2413",
+    measurementId: "G-WTXNXDVTZ7"
+  };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  
+    const messaging = firebase.messaging();
+    console.log(messaging.getToken())
+    messaging.getToken({ vapidKey: 'BK8quVdKKHUockQYSVKEkeu2FheWYzBH9wcHYB7Ko-IbNYQsJoCvE9A7FsooT9c5pTfSVs7fSGzT8jmfukErGXE' }).then((currentToken) => {
+        if (currentToken) {
+        // Send the token to the Django backend
+        fetch('/update_fcm_token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'currentToken': currentToken,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error updating token:', error));
 
- <!-- <a href="{% url 'register_user' %}"> -->
-  <!-- <button class="standard_button register">New User</button> -->
-<!-- </a> -->
-<!-- 
-<form method="POST" action="{% url 'login_user'%}">
-  {% csrf_token %}
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label form-label1">Username</label>
-    <input type="text" class="standard_button username" name="username" aria-describedby="emailHelp">
-    <label for="exampleInputPassword1" class="form-label form-label2">Password</label>
-    <input type="password" class="standard_button username password" name="password">
-  <button type="submit" class="standard_button">Submit</button>
-</form> -->
-<!-- </div> -->
-<!-- {% if messages %}
-  {% for message in messages %}
-  {{ message }}
-  {% endfor %}
-{% endif %} -->
+    } else {
+      console.log('No registration token available. Request permission to generate one.');
+   
+    }
+  }).catch((err) => {
+    console.log('An error occurred while retrieving token. ', err);
+  });
+  
+  
+  
+
+
+    function requestNotificationPermission() {
+        Notification
+            .requestPermission()
+            .then(function () {
+                console.log("Notification permission granted.");
+                return messaging.getToken();
+            })
+            .then(function (currentToken) {
+                if (currentToken) {
+                    // Send the token to the Django backend
+                    fetch('/update_fcm_token/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            'currentToken': currentToken,
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(data => console.log(data))
+                        .catch(error => console.error('Error updating token:', error));
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+            })
+            .catch(function (err) {
+                console.log("Unable to get permission to notify.", err);
+            });
+    }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        const permissionButton = document.getElementById('requestPermissionButton');
+
+        if (permissionButton) {
+            permissionButton.addEventListener('click', function () {
+                // Request notification permission when the button is clicked
+                Notification.requestPermission()
+                    .then(function (permission) {
+                        console.log('Notification permission:', permission);
+                        if (permission === 'granted') {
+                            // Handle permission granted
+                            messaging.getToken().then(function (currentToken) {
+                                // Send the token to the Django backend
+                                if (currentToken) {
+                                    fetch('/update_fcm_token/', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        body: new URLSearchParams({
+                                            'currentToken': currentToken,
+                                        }),
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => console.log(data))
+                                        .catch(error => console.error('Error updating token:', error));
+                                } else {
+                                    console.log('No registration token available. Request permission to generate one.');
+                                }
+                            }).catch(function (err) {
+                                console.log('An error occurred while retrieving token. ', err);
+                            });
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log('Unable to get permission to notify.', err);
+                    });
+            });
+        }
+    });
+</script>
 
 
 {% endblock %} 
