@@ -177,11 +177,18 @@ def orders_admin(request):
 
 def user_orders(request):
     if request.user.is_authenticated:
+        method = request.GET.get('method')
+        if method == 'Show_Table':
+            notification_id = request.GET.get('notification_id', None)
+            notification = Notification.objects.filter(id=notification_id).first()
+            if notification:
+                notification.is_read = True
+                notification.save()
         if request.user.is_superuser:
             return redirect('orders_admin')
         else:
             user_orders = Book.objects.filter(user=request.user)
-            return render(request, 'user_orders.html', {'user_orders': user_orders})
+            return render(request, 'user_orders.html', {'user_orders': user_orders,'method':method})
     else:
         return render(request, 'user_orders.html')
         # return render(request, 'user_orders.html', {'user_orders': 0})

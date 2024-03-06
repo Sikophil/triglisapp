@@ -26,7 +26,10 @@
 {% if notifications %}
     <ul>
         {% for notification in notifications %}
-            <div class="notification">
+        {% if notification.is_read == False %}
+
+        <a href="{% url 'user_orders' %}?method=Show_Table&notification_id={{ notification.id }}">
+            <button class="notification">
                 <div class="title_not">
                 {{ notification.title }}
             </div>
@@ -34,7 +37,8 @@
             <div class="message">
                 {{ notification.message }}
             </div>
-        </div>
+        </button></a>
+        {% endif %}
         {% endfor %}
     </ul>
 {% else %}

@@ -1,3 +1,4 @@
+# python piatto.py menu.csv ../../templates/karte.html ../../templates/karte_base.html drinks.csv
 import sys
 import csv
 import io
@@ -62,7 +63,7 @@ for category in categories:
         html += "<div class=\"menu-item\">"
 
         html += "<div class=\"menu-item-name\">" + item["item_name"] + "</div>"
-        html += "<div class=\"menu-item-price\">€" + item["item_price"] + "</div>"
+        html += "<div class=\"menu-item-price\">" + item["item_price"] + "</div>"
         html += "<div class=\"menu-item-description\">" + description 
         if (item == items[-1]) and (category==categories[-1]):
             html += "<br>"

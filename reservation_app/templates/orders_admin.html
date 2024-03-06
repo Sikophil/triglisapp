@@ -16,10 +16,16 @@
      {% if user.is_authenticated %}
      <div class="tables-container">
      {% for order in user_orders %}
-     <div class="table_button"><label>{{ order.date }} </label>
+     <div class="table_button"><label>{{ order.date }} {{ order.time }}</label>
       <hr> 
       <div class="text_st">
-      <br>{{ order.time }} <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
+        {% if order.last_name == ''%}
+      <br> {{ order.user }}
+      {% else %}
+      <br> {{ order.last_name}}
+      {% endif %}
+      
+      <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
     </div>
      {% endfor %}
     
