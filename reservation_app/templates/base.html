@@ -88,9 +88,9 @@
             --notification_background:var(--c400);
             --notification_text:var(--c950);
 
-            --cancel:rgb(223, 0, 0);
-            --confirm:green;
-            --asked:rgb(223, 0, 0);
+            --cancel:rgb(202, 129, 129);
+            --confirm:#85A681;
+            --asked:#A6C0E2;
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -154,7 +154,8 @@ button img {
 
 .tables-container {
 height: 80vh;
-
+width: 93vw;
+max-width:var(--max_width);
 /* margin-top: -6vh; */
 display: flex;
 flex-direction: column; 
@@ -165,18 +166,16 @@ place-items: center;
 .tables-container hr{
 border: 0; 
 height: .4vh;
-background-color: var(--table_title_text); 
-width:105%;
-margin-left: -2vw;
-margin-bottom:-3vh;
+background-color: var(--c600); 
+width:100%;
 
 }
 .table_button
 {
 /* margin-top: 1vh;  */
-width: 93vw;
 
-max-width:var(--max_width);
+width:100%;
+
 text-align: left;
 padding-top: 1vh;
 /*  */
@@ -184,7 +183,8 @@ height:17vh;
 background: var(--table_background); 
 color:var(--table_text);
 box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
-border: none;
+border:solid .4vh var(--c600);
+margin-bottom: 2vh;
 
 border-radius:var(--border-radius);
 }
@@ -199,30 +199,35 @@ border-radius:var(--border-radius);
 }
 .confirm{
   background: var(--confirm);
-  color:var(--c300);
+  color:var(--c950);
   text-decoration: none;
-  border:none;
   height:4vh;
-  width:100%;
+  width:calc(100% + 0.7vh);
+  margin-left: -0.35vh;
+  border:solid .4vh var(--c600);
+  border-top: none;
+  border-bottom: none;
 }
 .cancel{
   background: var(--cancel);
-  color:var(--c300);
+  color:var(--c950);
   text-decoration: none;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  border:none;
   height:4vh;
-  width:100%;
+  width:calc(100% + 0.7vh);
+  margin-left: -0.35vh;
+  border:solid .4vh var(--c600);
+  border-top: none;
 }
-/* .confirm_user{
-  padding-left: 1vw;
-  padding-right: 1vw;
-  color:var(--c300);
-  text-decoration: none;
-  border-radius: var(--border-radius);
-  border:none;
-  height:4vh;
-} */
+
+.confirm_user{
+  color:var(--c950);
+  text-align: center;
+  font-size: 3vh;
+  line-height: 4vh;
+  border-radius: 0 0 var(--border-radius_slide) var(--border-radius_slide);
+  border:none
+}
 .button-container {
 display: flex;
 flex-direction: column;

@@ -12,15 +12,18 @@
 
     </style>
    
-
+    <br>
      {% if user.is_authenticated %}
-     <div class="tables-container">
+     <div class="tables-container" style="height:90vh">
      {% for order in user_orders %}
-    
-     {% if order.confirmation == 'Nein'%}
-     <div class="table_button" style="margin-bottom: 2vh; height: 24vh;"><label>{{ order.date }} {{ order.time }}</label>
+     {% if order.comment == "" and order.decoration == False %}
+     <div class="table_button" style="margin-bottom: 2vh; height: 18vh;"><label>{{ order.date }} {{ order.time }}</label>
       {% else %}
-      <div class="table_button" style="margin-bottom: 2vh;"><label>{{ order.date }} {{ order.time }}</label>
+      {% if order.comment == "" or order.decoration == False %}
+      <div class="table_button" style="margin-bottom: 2vh; height: 21vh;"><label>{{ order.date }} {{ order.time }}</label>
+        {% else %}
+        <div class="table_button" style="margin-bottom: 2vh; height: 24vh;"><label>{{ order.date }} {{ order.time }}</label>
+          {% endif %}
         {% endif %}
       <hr> 
       <div class="text_st">
@@ -30,8 +33,27 @@
       <br> {{ order.last_name}}
       {% endif %}
       
-      <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }} <br></label>
+      <br> Gäste: {{ order.guests }} 
+      {% if order.decoration == True %}
+      <br>
+      Der Tisch muss schön 
+      {% if order.color == True %} in {{ order.color }}{% endif %}
+      eingedeckt
+      {% endif %}
+
+      {% if order.comment != "" %}
+      <br>
+      Kommentar: {{ order.comment }}
+      {% endif %}
+
     </div> 
+    {% if order.confirmation == "Ja" %}
+      <div style="color: var(--c950); padding-left: 2vw;">Reservierung ist bestätigt</div>
+      {% endif %}
+
+      {% if order.confirmation == "Cancel" %}
+      <div style="color:var(--c950); padding-left: 2vw;">Reservierung ist abgesagt</div>
+      {% endif %}
     {% if order.confirmation == 'Nein'%}
     <a href="{% url 'confirm' %}?method=confirm&book_id={{ order.id }}">
         <button class="confirm">Bestätigen</button>
@@ -41,23 +63,20 @@
         <button class="cancel">Absagen</button>
       </a>
       {% endif %}
-      
-     
-    <br>
-    <br>
-    <br>
-    <br>
+    </label>
+    <br><br><br><br><br>
   </div>
   
-    
-     {% endfor %}
-    
-     {% endif %}
-
+  {% if order.confirmation == 'Nein'%}
+  <br>
+  {% endif %}
+     {% endfor %} 
+   
+     {% endif %} 
+     
     <!-- <a href="{% url 'confirm' %}">
       <button class="table_button"><label>Confirm</label></button>
       <br/> -->
-
   </a>
 
 </div>

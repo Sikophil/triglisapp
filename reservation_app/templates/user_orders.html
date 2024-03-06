@@ -18,46 +18,63 @@
           </div>
       {% endif %}
      {% for order in user_orders %}
+
+
+          
      {% if order.decoration and order.comment != ""%}
-     <div class="table_button" style="height:23.5vh"><label>{{ order.date }} </label>
+     <div class="table_button">
+      
       {% else %}
       {% if order.decoration or order.comment != ""%}
-      <div class="table_button" style="height:20vh"><label>{{ order.date }} </label>
+      <div class="table_button">
         {% else %}
-        <div class="table_button"><label>{{ order.date }} </label>
+        <div class="table_button">
         {% endif %}
         {% endif %}
-     
+        <label>{{ order.date|date:"d.m.Y" }} {{ order.time|time:"H:i" }} {{ order.guests }} Personen</label>
+
+
+       
       <hr> 
-      <div class="text_st">
-      <br>Zeit: {{ order.time }} <br> Gäste: {{ order.guests }}
+      
+      <div style="line-height: 4vh; margin-left: 2vw;">
+    
+    
       {% if order.decoration == True %}
-      <br>Der Tisch wird schön 
+      Der Tisch wird schön 
       {% if order.color == True %} in {{ order.color }}{% endif %}
-      eingedeckt
-       <!-- (+1.5€ pro Person) -->
+      eingedeckt.
+    
       {% endif %}
 
       {% if order.comment != "" %}
-      <br>Kommentar: {{ order.comment }}
+    
+      Kommentar: {{ order.comment }}
       {% endif %}
 
-      <br>
-    </label>
+      
+      </div>
+      
+    <!-- </div> -->
+      {% if order.decoration or order.comment != ""%}
+      <hr>
+      {% endif %}
+     
       {% if order.confirmation == "Ja" %}
-      <div style="color: var(--confirm);">Ihre Reservierung ist bestätigt</div>
+      <!-- <div style="color: var(--confirm);text-align: left;font-size: 3vh;">Bestätigt</div> -->
+      <div class="confirm_user" style="  background-color: var(--confirm);">bestätigt</div>
       {% endif %}
 
       {% if order.confirmation == "Nein" %}
-      <div style="color: var(--asked);">Ihre Reservierung ist angefordert (Bitte auf Bestädigung warten!)</div>
+      <div class="confirm_user" style="  background-color: var(--asked);">gefragt</div>
       {% endif %}
 
       {% if order.confirmation == "Cancel" %}
-      <div style="color: var(--cancel);">Ihre Reservierung ist abgesagt</div>
+      <div class="confirm_user" style="  background-color: var(--cancel);">abgesagt</div>
       {% endif %}
-      <br><br>
+     
+
     
-  
     </div>
      {% endfor %}
      <div class="button-container">
