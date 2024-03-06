@@ -37,23 +37,34 @@ def menu(request):
 
 from django.db import transaction
 def confirm(request):
-    books = Book.objects.all()
+    method = request.GET.get('method')
+    if method == 'confirm':
 
-# Use a transaction for atomicity
-    with transaction.atomic():
-        for book in books:
-        # Check if confirmation value needs to be changed
-            if book.confirmation != 'Ja':
-                book.confirmation = 'Ja'
-                user =book.user
-                registration_tokens = [user.fcm_token]
-                titel='Reservierungsbestätigung'
-                message='Ihre Reservierung für ' +str(book.date)+ ' ist bestätigt'
-                send_notification([user],registration_tokens, titel, message)
-               
+        book_id=request.GET.get('book_id')
+        book =Book.objects.filter(id=book_id).first()
 
-                book.save()
-    return render(request, "home.html")
+        book.confirmation = 'Ja'
+        user =book.user
+        registration_tokens = [user.fcm_token]
+        titel='Reservierungsbestätigung'
+        message='Ihre Reservierung für ' +str(book.date)+ ' ist bestätigt'
+        send_notification([user],registration_tokens, titel, message)
+        book.save()
+    if method == 'cancel':
+        book_id=request.GET.get('book_id')
+        book =Book.objects.filter(id=book_id).first()
+
+        book.confirmation = 'Cancel'
+        user =book.user
+        registration_tokens = [user.fcm_token]
+        titel='Reservierungsbestätigung'
+        message='Ihre Reservierung für ' +str(book.date)+ ' ist leider abgesagt'
+        send_notification([user],registration_tokens, titel, message)
+        book.save()
+
+    return redirect('orders_admin')
+
+
 
 def account(request):
     if request.user.is_authenticated:
@@ -169,7 +180,7 @@ def register_user(request):
 
 def orders_admin(request):
     if request.user.is_superuser:
-        user_orders = Book.objects.filter(confirmation='Nein')
+        user_orders = Book.objects.filter(confirmation__in=['Nein', 'Ja'])
         return render(request, 'orders_admin.html', {'user_orders': user_orders})
     else:
         return redirect('home')

@@ -41,7 +41,23 @@
       {% if order.comment != "" %}
       <br>Kommentar: {{ order.comment }}
       {% endif %}
-      <br> Bestätigt: {{ order.confirmation }}<br><br></label>
+
+      <br>
+    </label>
+      {% if order.confirmation == "Ja" %}
+      <div style="color: var(--confirm);">Ihre Reservierung ist bestätigt</div>
+      {% endif %}
+
+      {% if order.confirmation == "Nein" %}
+      <div style="color: var(--asked);">Ihre Reservierung ist angefordert (Bitte auf Bestädigung warten!)</div>
+      {% endif %}
+
+      {% if order.confirmation == "Cancel" %}
+      <div style="color: var(--cancel);">Ihre Reservierung ist abgesagt</div>
+      {% endif %}
+      <br><br>
+    
+  
     </div>
      {% endfor %}
      <div class="button-container">

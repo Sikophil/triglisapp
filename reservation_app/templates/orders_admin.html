@@ -16,29 +16,48 @@
      {% if user.is_authenticated %}
      <div class="tables-container">
      {% for order in user_orders %}
-     <div class="table_button"><label>{{ order.date }} {{ order.time }}</label>
+    
+     {% if order.confirmation == 'Nein'%}
+     <div class="table_button" style="margin-bottom: 2vh; height: 24vh;"><label>{{ order.date }} {{ order.time }}</label>
+      {% else %}
+      <div class="table_button" style="margin-bottom: 2vh;"><label>{{ order.date }} {{ order.time }}</label>
+        {% endif %}
       <hr> 
       <div class="text_st">
         {% if order.last_name == ''%}
-      <br> {{ order.user }}
+      <br> {{ order.user.last_name }}
       {% else %}
       <br> {{ order.last_name}}
       {% endif %}
       
-      <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }}<br><br></label>
-    </div>
+      <br> Gäste: {{ order.guests }} <br> Bestätigt: {{ order.confirmation }} <br></label>
+    </div> 
+    {% if order.confirmation == 'Nein'%}
+    <a href="{% url 'confirm' %}?method=confirm&book_id={{ order.id }}">
+        <button class="confirm">Bestätigen</button>
+      </a>
+
+      <a href="{% url 'confirm' %}?method=cancel&book_id={{ order.id }}">
+        <button class="cancel">Absagen</button>
+      </a>
+      {% endif %}
+      
+     
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+  
+    
      {% endfor %}
     
      {% endif %}
 
-    <a href="{% url 'confirm' %}">
+    <!-- <a href="{% url 'confirm' %}">
       <button class="table_button"><label>Confirm</label></button>
-      <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+      <br/> -->
+
   </a>
 
 </div>

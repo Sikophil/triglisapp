@@ -87,6 +87,10 @@
 
             --notification_background:var(--c400);
             --notification_text:var(--c950);
+
+            --cancel:rgb(223, 0, 0);
+            --confirm:green;
+            --asked:rgb(223, 0, 0);
              /* rgb(240, 127, 187); */
             /* rgb(191,91,124); */
             /* --button_text:rgb(240, 127, 187); */
@@ -193,6 +197,32 @@ border-radius:var(--border-radius);
 .text_st{
   padding-left: 2vw;
 }
+.confirm{
+  background: var(--confirm);
+  color:var(--c300);
+  text-decoration: none;
+  border:none;
+  height:4vh;
+  width:100%;
+}
+.cancel{
+  background: var(--cancel);
+  color:var(--c300);
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border:none;
+  height:4vh;
+  width:100%;
+}
+/* .confirm_user{
+  padding-left: 1vw;
+  padding-right: 1vw;
+  color:var(--c300);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  border:none;
+  height:4vh;
+} */
 .button-container {
 display: flex;
 flex-direction: column;
