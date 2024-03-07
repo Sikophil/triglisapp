@@ -10,11 +10,27 @@
    
 </style>
 <br>
-<div class="tables-container" >
+<div class="tables-container" style="margin-top: -1vh;">
 <div class="button-container" >
     <a href="{% url 'create_book' %}">
-        <button class="std_button">Tisch reservieren</button>
+        <button class="std_button" style="height: 8vh;">Tisch reservieren</button>
     </a>     
+
+</div>
+<div class="info">
+   <div style="font-size: 3vh; text-align: center;"> HERZLICH WILLKOMMEN IN TRIGLISMÜHLE!</div>
+<div class="title"><br>UNSERE ÖFFNUNGSZEITEN<br></div>
+Montag, Dientstag:  RUHETAG<br>
+Mittwoch - Samstag:  11:00 - 21:00<br>
+Sonntag: 11:00 - 14:00<br>
+<div class="title">ADRESSE</div>
+Siegelbach 51 99310 Arnstadt<br>
+<div class="title">E-MAIL</div>
+info@triglismuehle.com<br>
+<div class="title">TELEPHONE</div>
+03628-78153<br><br>
+
+
 
 </div>
 {% if user.is_authenticated %}

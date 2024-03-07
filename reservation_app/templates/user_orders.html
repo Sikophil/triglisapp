@@ -35,12 +35,15 @@
 
 
        
-      <hr> 
+      <!-- <hr>  -->
       
       <div style="line-height: 4vh; margin-left: 2vw;">
     
     
       {% if order.decoration == True %}
+      <hr  style="margin-left: -2vw; border: 0; 
+      height: .4vh;
+      background-color: var(--c600); ">
       Der Tisch wird schön 
       {% if order.color == True %} in {{ order.color }}{% endif %}
       eingedeckt.
@@ -54,10 +57,10 @@
 
       
       </div>
-      
+    </div>
     <!-- </div> -->
       {% if order.decoration or order.comment != ""%}
-      <hr>
+      
       {% endif %}
      
       {% if order.confirmation == "Ja" %}
@@ -75,12 +78,14 @@
      
 
     
-    </div>
+ 
      {% endfor %}
      <div class="button-container">
       <a href="{% url 'create_book' %}">
-          <button class="std_button">+ Neuen Tisch reservieren</button>
+          <button class="std_button">+ Neuen Tisch reservieren
+          </button>
       </a>   
+      <br><br><br>
   
       
   </div>
