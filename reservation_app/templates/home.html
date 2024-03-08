@@ -9,7 +9,6 @@
 <style>
    
 </style>
-<br>
 <!-- <div class="info">
    <div style="font-size: 3vh; text-align: center;"> HERZLICH WILLKOMMEN IN TRIGLISMÜHLE!</div>
  <div class="title"><br>UNSERE ÖFFNUNGSZEITEN<br></div>
@@ -26,13 +25,11 @@ info@triglismuehle.com<br>
 
 
 </div> -->
-<div class="tables-container" style="margin-top: -1vh;">
-<div class="button-container" >
+<div class="tables-container" style="min-height: 90vh;">
     <a href="{% url 'create_book' %}">
-        <button class="std_button" style="height: 8vh;">Tisch reservieren</button>
+        <button class="std_button" style="height: 8vh; margin-top: 2vh;">Tisch reservieren</button>
     </a>     
 
-</div>
 
 {% if user.is_authenticated %}
 <div class="notifications" style="overflow-y: auto">
@@ -68,8 +65,9 @@ info@triglismuehle.com<br>
 
 
 
+</div><br><br><br><br>
 </div>
-</div>
+
 
 
     <style>

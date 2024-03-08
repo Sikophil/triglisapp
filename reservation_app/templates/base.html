@@ -123,7 +123,10 @@ body {
   height: 90vh;
   width: 100%;
   place-items: center;
-  background:var(--body_background);
+  background-color:var(--body_background);
+  /* background-color: #421406; */
+background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
  
 }
 /* Tabbar */
@@ -156,16 +159,18 @@ button img {
 
 
 .tables-container {
-  margin-top: -4vh;
-height: 80vh;
+  margin-top: 2vh;
+/* height: 80vh; */
 width: 93vw;
 max-width:var(--max_width);
 /* margin-top: -6vh; */
+vertical-align: top;
 display: flex;
 flex-direction: column; 
-align-items: center;
+/* align-items: center; */
 place-items: center;
-
+background-color: var(--body_background);
+border-radius:  var(--border-radius);
         }
 /* .tables-container hr{
 border: 0; 
@@ -179,12 +184,12 @@ max-width:var(--max_width);
 {
 /* margin-top: 1vh;  */
 
-width:100%;
+width:90%;
 
 text-align: left;
 padding-top: 1vh;
 /*  */
-height:17vh;
+/* height:17vh; */
 background: var(--table_background); 
 color:var(--table_text);
 box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
@@ -228,8 +233,7 @@ border-radius:  var(--border-radius_slide) var(--border-radius_slide) 0 0;
 
 .confirm_user{
   margin-bottom: 2vh;
-  width: 93vw;
-  max-width:var(--max_width);
+  width: 90%;
   color:var(--c950);
   text-align: center;
   font-size: 3vh;
@@ -247,9 +251,9 @@ margin-top: 0;
 
 .std_button {
 margin-bottom: 1vh; /* Add some spacing between buttons */
-width: 93vw;
+width: min(83.7vw,9in);
 text-align: center;
-max-width:var(--max_width);
+/* max-width:var(--max_width); */
 height:10vh;
 background: var(--button_background); 
 color:var(--button_text);
@@ -264,8 +268,8 @@ text-transform: uppercase;
   overflow: hidden;
   width: 93vw;
   max-width:var(--max_width);
-  margin-top: -3vh;
-  background: var(--button_background);
+  /* margin-top: -3vh; */
+  background: var(--body_background);
   border-radius:var(--border-radius);
   box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);
 }
@@ -605,8 +609,7 @@ form .btn input[type="submit"] {
 .notifications {
   margin-top: 2vh;
   overflow: hidden;
-  width: 93vw;
-  max-width:var(--max_width);
+  width: 90%;
   background: var(--notification_background);
   border-radius:var(--border-radius);
   box-shadow: 0 2vw 2vh rgba(0, 0, 0, 0.2);

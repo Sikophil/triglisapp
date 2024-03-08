@@ -13,33 +13,16 @@
      {% if user.is_authenticated %}
      <div class="tables-container">
       {% if user_orders|length > 0 %}
-        <div style="color:var(--body_text);font-size:4vh;">
+        <div style="color:var(--body_text);font-size:4vh;margin-top: 2vh;">
           Ihre Reservierungen
           </div>
       {% endif %}
      {% for order in user_orders %}
 
-
-          
-     {% if order.decoration and order.comment != ""%}
      <div class="table_button">
-      
-      {% else %}
-      {% if order.decoration or order.comment != ""%}
-      <div class="table_button">
-        {% else %}
-        <div class="table_button">
-        {% endif %}
-        {% endif %}
-        <label>{{ order.date|date:"d.m.Y" }} {{ order.time|time:"H:i" }} {{ order.guests }} Personen</label>
-
-
-       
-      <!-- <hr>  -->
+      <label>{{ order.date|date:"d.m.Y" }} {{ order.time|time:"H:i" }} {{ order.guests }} Personen</label>
       
       <div style="line-height: 4vh; margin-left: 2vw;">
-    
-    
       {% if order.decoration == True %}
       <hr  style="margin-left: -2vw; border: 0; 
       height: .4vh;
@@ -54,17 +37,10 @@
     
       Kommentar: {{ order.comment }}
       {% endif %}
-
-      
       </div>
     </div>
-    <!-- </div> -->
-      {% if order.decoration or order.comment != ""%}
-      
-      {% endif %}
      
       {% if order.confirmation == "Ja" %}
-      <!-- <div style="color: var(--confirm);text-align: left;font-size: 3vh;">Bestätigt</div> -->
       <div class="confirm_user" style="  background-color: var(--confirm);">bestätigt</div>
       {% endif %}
 
@@ -76,33 +52,26 @@
       <div class="confirm_user" style="  background-color: var(--cancel);">abgesagt</div>
       {% endif %}
      
-
-    
- 
      {% endfor %}
-     <div class="button-container">
-      <a href="{% url 'create_book' %}">
-          <button class="std_button">+ Neuen Tisch reservieren
+
+     <!-- <div class="button-container"> -->
+      <a href="{% url 'create_book' %}" >
+          <button class="std_button" style="margin-bottom: 0vh;">+ Neuen Tisch reservieren
           </button>
       </a>   
-      <br><br><br>
   
-      
-  </div>
      {% else %}
     <div class="text_orders"> 
       Leider haben Sie noch keine reservierten Tische.<br><br>
       Bitte <a href="{% url 'login_user' %}">melden Sie an</a> um Ihre Reservierungen einzusehen oder reservieren Sie  <a href="{% url 'create_book' %}"> einen neuen Tisch</a>.
     </div>
-
+  </div>
 
      {% endif %}
-     <br/>
-    <br/>
-    <br/>
+     <br>
+    </div>
+     <br><br>     <br><br><br><br>
 
-   
-    
      {% load static %}
 <a href="{% url 'home' %}">
   <button class="tabbar home">
